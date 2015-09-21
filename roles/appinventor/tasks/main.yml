@@ -1,0 +1,16 @@
+---
+    - name: Install JDK package
+      apt: name=openjdk-7-jdk state=latest
+
+    - name: download App Inventor
+      unarchive: src={{central_server}}/AppInventorOffline_02May14.zip dest=/home/{{username}} copy=no
+
+    - name: Change permissions
+      file: path=/home/koombook/Ai2LiveComplete/startBuildServer.sh owner={{username}} group={{username}} mode=0755
+      file: path=/home/koombook/Ai2LiveComplete/startAIServer.sh owner={{username}} group={{username}} mode=0755
+
+    - name: Setup startup file
+      template: src=appinventor.j2 dest=/etc/init.d/appinventor owner=root group=root mode=755
+
+    - name: Enable service AppInventor
+      service: name=appinventor enabled=yes

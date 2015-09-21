@@ -1,0 +1,13 @@
+#!/bin/sh
+iptables -F
+iptables -X
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+iptables -t nat -A POSTROUTING -o {{lan_interface}} -j MASQUERADE
+iptables -t nat -A POSTROUTING -o {{client_interface}} -j MASQUERADE
+iptables -A FORWARD -i {{lan_interface}} -o {{hotspot_interface}} -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i {{client_interface}} -o {{hotspot_interface}} -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i {{hotspot_interface}} -o {{lan_interface}} -j ACCEPT
+iptables -A FORWARD -i {{hotspot_interface}} -o {{client_interface}} -j ACCEPT

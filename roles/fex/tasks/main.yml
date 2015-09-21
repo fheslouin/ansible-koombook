@@ -1,0 +1,9 @@
+---
+    - name: Copy fex.file
+      template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex
+
+    - name: Build binary from fex
+      shell: fex2bin lime2.fex > lime2.bin chdir=/boot/bin/
+
+    - name: Reboot system
+      command: /sbin/reboot

@@ -1,0 +1,39 @@
+---
+  - file: path=/opt/mongo state=directory mode=0755
+
+  - name: Copy and unzip mongodb armhf version archive
+    unarchive: src={{central_server}}/mongo.zip dest=/opt/ copy=yes
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - file: src=/opt/mongo/bin/mongod dest=/usr/bin/mongod state=link
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - name: Install mongodb from repository
+    apt: name=mongodb state=latest
+    when: ansible_architecture == 'x86_64'
+
+  - name: Add mongodb user
+    user: name=mongodb group=nogroup shell=/etc/false createhome=no
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - name: Create log directory
+    file: path=/var/log/mongodb/ state=directory mode=0755 owner=mongodb group=nogroup
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - name: Create data directory
+    file: path=/var/lib/mongodb state=directory mode=0755 owner=mongodb group=nogroup
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - name: Setup startup file
+    copy: src=init.d dest=/etc/init.d/mongodb owner=root group=root mode="u+x"
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - name: Enable service mongodb
+    #Need upstart to be installed, does not work with sysvinit
+    #service: name=kiwix enabled=yes
+    command: update-rc.d mongodb defaults
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+  - name: Copy mongodb conf
+    copy: src=mongodb.conf dest=/etc/mongodb.conf owner=root group=root
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'

@@ -1,0 +1,26 @@
+---
+- name: Check if package exist
+  stat: path=/tmp/ideasbox_0.3.2-1_armhf.deb
+  register: st
+  when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
+- name: Check if package exist
+  stat: path=/tmp/ideasbox_0.0.1-1_amd64.deb
+  register: st
+  when: ansible_architecture == 'x86_64'
+
+- name: Copy ideasbox package
+  get_url: url={{central_server}}/ideasbox_0.3.2-1_armhf.deb dest=/tmp/ideasbox_0.3.2-1_armhf.deb owner=root group=root mode=755
+  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
+- name: install ideasbox package
+  apt: deb=/tmp/ideasbox_0.3.2-1_armhf.deb
+  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
+- name: Copy ideasbox package
+  get_url: url={{central_server}}/ideasbox_0.0.1-1_amd64.deb dest=/tmp/ideasbox_0.0.1-1_armhf.deb owner=root group=root mode=755
+  when: ansible_architecture == 'x86_64' and st.stat.exists == 'false'
+
+- name: install ideasbox package
+  apt: deb=/tmp/ideasbox_0.0.1-1_amd64.deb
+  when: ansible_architecture == 'x86_64' and st.stat.exists == 'false'

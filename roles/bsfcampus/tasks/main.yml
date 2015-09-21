@@ -1,0 +1,45 @@
+---
+  - name: Install specific packages
+    apt: name={{ item }} state=latest
+    with_items:
+      - python-pip
+      - python-dev
+      - python-pkg-resources
+      - unzip
+
+  - unarchive: src=roles/bsfcampus/files/gryzzlab-mook-bsf-api-a7ef63e48b68.zip dest=/home/koombook copy=yes
+
+  - command: mv /home/koombook/gryzzlab-mook-bsf-api-a7ef63e48b68 /home/koombook/mook-bsf-api
+
+  - unarchive: src=roles/bsfcampus/files/gryzzlab-mook-bsf-front-end-backbone-3c0020ab5af1.zip dest=/home/koombook copy=yes
+
+  - command: mv /home/koombook/gryzzlab-mook-bsf-front-end-backbone-3c0020ab5af1 /home/koombook/mook-bsf-front-end-backbone
+
+  - name: Update setuptools
+    pip: name=setuptools extra_args="-U"
+
+  - name: Install Gunicorn
+    pip: name=gunicorn
+
+  - name: Install python requierment
+    pip: requirements=requirements.txt chdir=/home/koombook/mook-bsf-api extra_args='--upgrade'
+
+  - name: Copy config files
+    copy: src=app_config.py dest=/home/koombook/mook-bsf-api/MookAPI/
+
+  - name: Copy bsfcampus vhost
+    template: src=vhost.j2 dest=/etc/nginx/sites-available/bsfcampus
+    register: vhost
+
+  - name: bsf campus enable Virtual host
+    file: src=/etc/nginx/sites-available/bsfcampus dest=/etc/nginx/sites-enabled/bsfcampus state=link
+    when: vhost.changed
+    notify: restart nginx
+
+  - name: Setup startup file
+    copy: src=init.d dest=/etc/init.d/bsfcampus owner=root group=root mode=755
+
+  - name: Enable service bsfcampus
+    #Need upstart to be installed, does not work with sysvinit
+    #service: name=kiwix enabled=yes
+    command: update-rc.d bsfcampus defaults

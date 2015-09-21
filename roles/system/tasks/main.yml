@@ -1,0 +1,55 @@
+---
+    - name: Install more package
+      apt: name={{ item }} state=latest
+      with_items:
+       - lsb-release
+       - vim
+       - locate
+       - git
+       - unzip
+       - python-pip
+       - bash-completion
+       - aptitude
+
+    - name: Add user KoomBook
+      user: name={{username}}
+
+    - name: Copy .bashrc for root
+      copy: src=bashrc dest=/root/.bashrc owner=root
+
+    - name: Copy vimrc for root
+      copy: src=vim dest=/etc/vim/vimrc owner=root
+
+    - hostname: name={{ hostname }}
+
+    - name: Set timezone variables
+      copy: content={{ timezone }} dest=/etc/timezone owner=root group=root mode=0644 backup=yes
+      notify: update timezone
+
+    - name: Update packages list
+      apt: update_cache=yes
+
+    - name: List packages to upgrade (1/2)
+      shell: aptitude -q -F%p --disable-columns search "~U"
+      register: updates
+      changed_when: False
+
+    - name: Upgrade packages
+      apt: upgrade=safe
+
+    - name: Copy patch U-Boot package
+      get_url: url={{central_server}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linux-u-boot-lime2_4.3_armhf.deb owner=root group=root mode=755
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
+    - name: install patch U-Boot package
+      apt:  deb=/tmp/linux-u-boot-lime2_4.3_armhf.deb
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
+    - name: List services to restart (1/2)
+      shell: checkrestart | grep ^service | awk '{print $2}'
+      register: services
+      changed_when: False
+
+    #- name: Mount hard drive
+    - file: path=/media/hdd state=directory
+    - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
