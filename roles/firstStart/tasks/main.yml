@@ -15,7 +15,7 @@
 - shell: echo "{{ kb_name }}","{{ UUID }}","{{hdd_access}}" >> /etc/firstStart.csv
   when: st.stat.exists == False
   
-- shell: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> /home/jails/ansible/UUIDKoomBook/firstStart.csv"
+- shell: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
   when: st.stat.exists == False
 
 - template: src=interfaces.j2 dest=/etc/network/interfaces backup=no
