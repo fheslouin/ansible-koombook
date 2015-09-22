@@ -1,6 +1,4 @@
 localhost ansible_connection=local
 
-[pull_mode_hosts]
-192.168.1.3
-#192.168.1.14
-#192.168.1.94
+[koombook]
+192.168.1.4

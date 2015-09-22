@@ -1,19 +1,19 @@
 ---
 - hosts: localhost
-#- hosts: pull_mode_hosts
+#- hosts: koombook
   roles:
-    - uuidKoomBook
-    - system
-    - nginx
-    - dnsmasq
+    - firstStart
+    #- system
+    #- nginx
+    #- dnsmasq
     #- hostapd
-    - iptables
-    - kiwix
+    #- iptables
+    #- kiwix
     #- kalite
-    - monitoring
-    - ideasbox
-    - gutemberg
-    - appinventor
+    #- monitoring
+    #- ideasbox
+    #- gutemberg
+    #- appinventor
     #- fex
-   # #- bsfcampus
-    - mongodb
+    #- bsfcampus
+    #- mongodb
