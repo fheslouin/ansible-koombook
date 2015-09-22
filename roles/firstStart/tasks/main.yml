@@ -7,11 +7,10 @@
   when: st.stat.exists == False
 
 - stat: path=/media/hdd/
-  register: hdd
-  register: hdd_access = 1
+  register: p
 
 - set_fact: hdd_access="0"
-  when: hdd.stat.isdir is not defined
+  when: p.stat.isdir is not defined
 
 - shell: echo "{{ kb_name }}","{{ UUID }}","{{hdd_access}}" >> /etc/firstStart.csv
   when: st.stat.exists == False
@@ -20,5 +19,7 @@
   when: st.stat.exists == False
 
 - template: src=interfaces.j2 dest=/etc/network/interfaces backup=no
+  when: st.stat.exists == False
 
 - command: /sbin/halt
+  when: st.stat.exists == False

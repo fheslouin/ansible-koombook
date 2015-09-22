@@ -15,7 +15,7 @@
 #
 ---
 
-- hosts: pull_mode_hosts
+- hosts: koombook
   remote_user: root
 
   vars:
@@ -62,4 +62,4 @@
       template: src=templates/etc_logrotate.d_ansible-pull.j2 dest=/etc/logrotate.d/ansible-pull owner=root group=root mode=0644
 
     - name: Reboot system
-      command: shutdown -r now "Ansible updates triggered"
+      shell: reboot
