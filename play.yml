@@ -1,18 +1,18 @@
 ---
-- hosts: localhost
-#- hosts: koombook
+#- hosts: localhost
+- hosts: koombook
   roles:
-    - system
-    - nginx
-    - dnsmasq
-    - hostapd
-    - iptables
-    - kiwix
-    - kalite
-    - monitoring
-    - ideasbox
-    - gutemberg
-    - appinventor
-    - fex
-    - bsfcampus
-    - mongodb
+    # - system
+    # - nginx
+    # - dnsmasq
+    # - hostapd
+    # - iptables
+    # - kiwix
+    # - kalite
+    # - monitoring
+    # - ideasbox
+    # - gutemberg
+     - appinventor
+    # - fex
+    # - bsfcampus
+    # - mongodb
