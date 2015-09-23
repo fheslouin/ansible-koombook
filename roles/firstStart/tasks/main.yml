@@ -6,6 +6,8 @@
 - set_fact: kb_name="KoomBook{{ 1000 | random }}" UUID="{{ ansible_default_ipv4["macaddress"] | hash('md5') }}"
   when: st.stat.exists == False
 
+- hostname: name="{{ kb_name }}"
+
 - stat: path=/media/hdd/
   register: p
 
