@@ -21,6 +21,5 @@
 - template: src=interfaces.j2 dest=/etc/network/interfaces backup=no
   when: st.stat.exists == False
 
-- name: shutdown
-  command: /sbin/shutdown -h now
+- command: /sbin/shutdown -h now
   when: st.stat.exists == False
