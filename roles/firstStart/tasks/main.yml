@@ -7,6 +7,7 @@
   when: st.stat.exists == False
 
 - hostname: name="{{ kb_name }}"
+  when: st.stat.exists == False
 
 - stat: path=/media/hdd/
   register: p
@@ -14,13 +15,13 @@
 - set_fact: hdd_access="0"
   when: p.stat.isdir is not defined
 
-- shell: echo "{{ kb_name }}","{{ UUID }}","{{hdd_access}}" >> /etc/firstStart.csv
+- copy: content="{{ kb_name }}","{{ UUID }}","{{hdd_access}}" dest=/etc/firstStart.csv
   when: st.stat.exists == False
   
-- shell: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
+- raw: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
   when: st.stat.exists == False
 
-- template: src=interfaces.j2 dest=/etc/network/interfaces backup=no
+- template: src=roles/firstStart/tasks/interfaces.j2 dest=/etc/network/interfaces
   when: st.stat.exists == False
 
 - command: /sbin/shutdown -h now
