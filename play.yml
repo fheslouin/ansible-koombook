@@ -2,6 +2,7 @@
 #- hosts: localhost
 - hosts: koombook
   roles:
+    - firstStart
     # - system
     # - nginx
     # - dnsmasq
@@ -12,7 +13,7 @@
     # - monitoring
     # - ideasbox
     # - gutemberg
-     - appinventor
+    # - appinventor
     # - fex
     # - bsfcampus
     # - mongodb
