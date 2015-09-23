@@ -21,7 +21,7 @@
 - raw: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
   when: st.stat.exists == False
 
-- template: src=roles/firstStart/tasks/interfaces.j2 dest=/etc/network/interfaces
+- lineinfile: dest=/etc/network/interfaces line="wpa-psk *" state=absent
   when: st.stat.exists == False
 
 - command: /sbin/shutdown -h now
