@@ -2,4 +2,4 @@
 
 - set_fact: date="{{ ansible_date_time["date"]}}"
   
-- shell: tar zcf - /var/log/dmesg /var/log/kern.log /var/log/syslog | ssh {{ central_server }} "cat >> ./ansible/logs/"{{ ansible_hostname }}"-"{{ date }}"".tgz
+- shell: cd /var/log/ && tar zcf - dmesg kern.log syslog | ssh {{ central_server }} "cat >> ./ansible/logs/"{{ ansible_hostname }}"-"{{ date }}"".tgz

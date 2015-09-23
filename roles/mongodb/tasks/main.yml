@@ -2,7 +2,7 @@
   - file: path=/opt/mongo state=directory mode=0755
 
   - name: Copy and unzip mongodb armhf version archive
-    unarchive: src={{central_server}}/mongo.zip dest=/opt/ copy=yes
+    unarchive: src={{filer_bsf}}/mongo.zip dest=/opt/ copy=yes
     when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
   - file: src=/opt/mongo/bin/mongod dest=/usr/bin/mongod state=link

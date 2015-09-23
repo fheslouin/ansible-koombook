@@ -1,6 +1,6 @@
 ---
     - name: Copying kiwix binary
-      get_url: url={{central_server}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
+      get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
 
     - name: Setup startup file
       template: src=gutemberg.j2 dest=/etc/init.d/gutemberg owner=root group=root mode=755

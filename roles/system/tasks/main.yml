@@ -38,7 +38,7 @@
       apt: upgrade=safe
 
     - name: Copy patch U-Boot package
-      get_url: url={{central_server}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linux-u-boot-lime2_4.3_armhf.deb owner=root group=root mode=755
+      get_url: url={{filer_bsf}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linux-u-boot-lime2_4.3_armhf.deb owner=root group=root mode=755
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
     - name: install patch U-Boot package
@@ -50,6 +50,5 @@
       register: services
       changed_when: False
 
-    #- name: Mount hard drive
     - file: path=/media/hdd state=directory
     - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
