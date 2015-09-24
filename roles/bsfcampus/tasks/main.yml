@@ -7,6 +7,9 @@
       - python-pkg-resources
       - unzip
 
+  # Utiliser vars_prompt: passphrase: "Please enter the passphrase for the SSL certificate"
+  # Pour se connecter au GitHub
+
   - unarchive: src=roles/bsfcampus/files/gryzzlab-mook-bsf-api-a7ef63e48b68.zip dest=/home/koombook copy=yes
 
   - command: mv /home/koombook/gryzzlab-mook-bsf-api-a7ef63e48b68 /home/koombook/mook-bsf-api
@@ -40,6 +43,4 @@
     copy: src=init.d dest=/etc/init.d/bsfcampus owner=root group=root mode=755
 
   - name: Enable service bsfcampus
-    #Need upstart to be installed, does not work with sysvinit
-    #service: name=kiwix enabled=yes
-    command: update-rc.d bsfcampus defaults
+    service: name=bsfcampus enabled=yes

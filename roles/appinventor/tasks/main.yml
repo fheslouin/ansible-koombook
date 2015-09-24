@@ -6,7 +6,7 @@
 
     - name: download App Inventor
       get_url: url={{filer_bsf}}/AppInventorOffline_07Sept2015.zip dest=/home/{{username}}
-      
+
     - unarchive: src=/home/{{username}}/AppInventorOffline_07Sept2015.zip dest=/home/{{username}} copy=no
 
     - name: Change permissions

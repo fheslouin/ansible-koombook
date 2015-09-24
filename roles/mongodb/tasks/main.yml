@@ -29,9 +29,7 @@
     when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
   - name: Enable service mongodb
-    #Need upstart to be installed, does not work with sysvinit
-    #service: name=kiwix enabled=yes
-    command: update-rc.d mongodb defaults
+    service: name=mongodb enabled=yes
     when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
   - name: Copy mongodb conf

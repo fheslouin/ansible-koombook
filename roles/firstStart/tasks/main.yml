@@ -6,7 +6,10 @@
 - set_fact: kb_name="KoomBook{{ 1000 | random }}" UUID="{{ ansible_default_ipv4["macaddress"] | hash('md5') }}"
   when: st.stat.exists == False
 
-- hostname: name="{{ kb_name }}"
+- hostname: name="{{ kb_name }}"    
+  when: st.stat.exists == False
+
+- lineinfile: dest=/etc/hosts regexp='^127.0.0.1' insertafter='127.0.0.1' line='127.0.0.1 localhost {{ kb_name }} {{ hostname }}' owner=root group=root mode=0644
   when: st.stat.exists == False
 
 - stat: path=/media/hdd/
@@ -15,14 +18,17 @@
 - set_fact: hdd_access="0"
   when: p.stat.isdir is not defined
 
-- copy: content="{{ kb_name }}","{{ UUID }}","{{hdd_access}}" dest=/etc/firstStart.csv
-  when: st.stat.exists == False
-  
-- raw: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
+- set_fact: hdd_access="1"
+  when: p.stat.isdir is defined
+
+- copy: content="{{ kb_name }}","{{ UUID }}","{{hdd_access}}","{{ ansible_default_ipv4["macaddress"] }}","{{ ansible_default_ipv4["address"] }}" dest=/etc/firstStart.csv
   when: st.stat.exists == False
 
-- lineinfile: dest=/etc/network/interfaces line="wpa-psk *" state=absent
+#- raw: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
+#  when: st.stat.exists == False
+
+- lineinfile: dest=/etc/network/interfaces regexp='wpa' state=absent
   when: st.stat.exists == False
 
-- command: /sbin/shutdown -h now
+- raw: /sbin/shutdown -h now
   when: st.stat.exists == False
