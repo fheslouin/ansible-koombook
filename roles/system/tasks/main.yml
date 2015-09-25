@@ -1,4 +1,10 @@
 ---
+    - name: Update packages list
+      apt: update_cache=yes
+
+    - name: Upgrade packages
+      apt: upgrade=safe
+
     - name: Install more package
       apt: name={{ item }} state=latest
       with_items:
@@ -26,17 +32,6 @@
       copy: content={{ timezone }} dest=/etc/timezone owner=root group=root mode=0644 backup=yes
       notify: update timezone
 
-    - name: Update packages list
-      apt: update_cache=yes
-
-    - name: List packages to upgrade (1/2)
-      shell: aptitude -q -F%p --disable-columns search "~U"
-      register: updates
-      changed_when: False
-
-    - name: Upgrade packages
-      apt: upgrade=safe
-
     - name: Copy patch U-Boot package
       get_url: url={{filer_bsf}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linux-u-boot-lime2_4.3_armhf.deb owner=root group=root mode=755
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
@@ -50,5 +45,6 @@
       register: services
       changed_when: False
 
-    - file: path=/media/hdd state=directory
-    - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
+    - name: Mount hard drive
+      file: path=/media/hdd state=directory
+      mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted

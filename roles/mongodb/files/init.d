@@ -127,6 +127,7 @@ running() {
 
 start_server() {
 # Start the process using the wrapper
+	    rm -f $DATA/mongod.lock
             start-stop-daemon --background --start --quiet --pidfile $PIDFILE \
                         --make-pidfile --chuid $DAEMONUSER \
                         --exec $NUMACTL $DAEMON -- $DAEMON_OPTS

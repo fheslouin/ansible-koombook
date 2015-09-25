@@ -7,40 +7,92 @@
       - python-pkg-resources
       - unzip
 
-  # Utiliser vars_prompt: passphrase: "Please enter the passphrase for the SSL certificate"
-  # Pour se connecter au GitHub
-
-  - unarchive: src=roles/bsfcampus/files/gryzzlab-mook-bsf-api-a7ef63e48b68.zip dest=/home/koombook copy=yes
-
-  - command: mv /home/koombook/gryzzlab-mook-bsf-api-a7ef63e48b68 /home/koombook/mook-bsf-api
-
-  - unarchive: src=roles/bsfcampus/files/gryzzlab-mook-bsf-front-end-backbone-3c0020ab5af1.zip dest=/home/koombook copy=yes
-
-  - command: mv /home/koombook/gryzzlab-mook-bsf-front-end-backbone-3c0020ab5af1 /home/koombook/mook-bsf-front-end-backbone
+####
+# BACK END CONFIGURATION
+####
+  - git: repo=https://bsfcampus@bitbucket.org/gryzzlab/mook-bsf-api.git dest={{ mook_path }}{{ mook_name }}/api
 
   - name: Update setuptools
     pip: name=setuptools extra_args="-U"
 
-  - name: Install Gunicorn
-    pip: name=gunicorn
-
   - name: Install python requierment
-    pip: requirements=requirements.txt chdir=/home/koombook/mook-bsf-api extra_args='--upgrade'
+    pip: requirements=requirements.txt chdir={{ mook_path }}{{ mook_name }}/api virtualenv={{ mook_path }}{{ mook_name }}/api
 
-  - name: Copy config files
-    copy: src=app_config.py dest=/home/koombook/mook-bsf-api/MookAPI/
+  - name: Create static dir
+    file: path={{ mook_path }}{{ mook_name }}/static state=directory owner=www-data group=www-data mode=0751
 
-  - name: Copy bsfcampus vhost
-    template: src=vhost.j2 dest=/etc/nginx/sites-available/bsfcampus
+  - name: Copy settings_local config files
+    template: src=settings_local.py.j2 dest={{ mook_path }}{{ mook_name }}/api
+
+  - name: Setup startup file for uwsgi
+    copy: src=settings_central.py dest={{ mook_path }}{{ mook_name }}/api owner=root group=root mode=755
+
+####
+# UWSGI CONFIGURATION
+####
+
+  - name: Installe uwsgi
+    pip: name=uwsgi
+
+    #Vérifier si le répertoir n'existe pas déjà
+  - name: Create dir for emperor
+    file: path=/etc/uwsgi/vassals state=directory owner=root group=root mode=0751
+
+  - name: Copy uwsgi config files
+    template: src=uwsgi-api.ini.j2 dest=/etc/uwsgi/vassals
+
+  - name: Create log dir for uwsgi
+    file: path=/var/log/uwsgi state=directory owner=www-data group=www-data mode=0751
+
+  - name: Symbolic link for wsgi
+    file: src={{ mook_path }}{{ mook_name }}/api/mook_local.wsgi dest={{ mook_path }}{{ mook_name }}/api/mook_local.py state=link
+
+####
+# NGINX CONFIGURATION
+####
+
+  - name: Copy vhost
+    template: src=vhost.j2 dest=/etc/nginx/sites-available/{{ mook_name }}
+    register: vhost
+
+  - name: Copy api vhost
+    template: src=vhost-api.j2 dest=/etc/nginx/sites-available/{{ mook_name }}-api
     register: vhost
 
   - name: bsf campus enable Virtual host
-    file: src=/etc/nginx/sites-available/bsfcampus dest=/etc/nginx/sites-enabled/bsfcampus state=link
+    file: src=/etc/nginx/sites-available/{{ mook_name }} dest=/etc/nginx/sites-enabled/{{ mook_name }} state=link
     when: vhost.changed
     notify: restart nginx
 
-  - name: Setup startup file
-    copy: src=init.d dest=/etc/init.d/bsfcampus owner=root group=root mode=755
+  - name: bsf campus api enable Virtual host
+    file: src=/etc/nginx/sites-available/{{ mook_name }}-api dest=/etc/nginx/sites-enabled/{{ mook_name }}-api state=link
+    when: vhost.changed
+    notify: restart nginx
 
-  - name: Enable service bsfcampus
-    service: name=bsfcampus enabled=yes
+####
+# INIT SCRIPT
+####
+
+  - name: Setup startup file for sync-daemon
+    template: src=sync-daemon dest=/etc/init.d/{{ mook_name }}-sync owner=root group=root mode=755
+
+  - name: Setup startup file for uwsgi
+    copy: src=uwsgi dest=/etc/init.d/uwsgi owner=root group=root mode=755
+
+  - name: Enable service sync daemon
+    service: name={{ mook_name }}-sync enabled=yes
+
+  - name: Enable service uwsgi
+    service: name=uwsgi enabled=yes
+
+####
+# FRONT END CONFIGURATION
+####
+
+  - git: repo=https://bsfcampus@bitbucket.org/gryzzlab/mook-bsf-front-end-backbone.git dest={{ mook_path }}{{ mook_name }}/front
+
+  - name: download the vendor package
+    unarchive: src={{filer_bsf}}/vendor.tgz dest={{ mook_path }}{{ mook_name }}/front copy=no
+
+  - name: Copy config.js config files
+    template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front

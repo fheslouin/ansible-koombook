@@ -1,27 +1,24 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          bsfcampus
+# Provides:          {{mook_name}}-sync-daemon
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: start bsfcampus gurnicorn server
-# Description:       bsfcampus gurnicorn server daemon
+# Short-Description: start {{mook_name}}-sync-daemon server
+# Description:       {{mook_name}}-sync-daemon server
 ### END INIT INFO
-
-# Author: Gryzz-Lab
 
 # Do NOT "set -e"
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="bsfcampus server"
-NAME="bsfcampus"
-DAEMON=/usr/local/bin/gunicorn
+DESC="Serveur de synchro {{mook_name}}"
+NAME={{mook_name}}-sync-daemon
+DAEMON="python {{ mook_path }}{{ mook_name }}/api/manage.py"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
-# Exit if the package is not installed
-[ -x "$DAEMON" ] || exit 0
+OWNER=www-data
 
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
@@ -34,7 +31,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
-DAEMON_ARGS="-c /home/koombook/mook-bsf-api/gunicorn-config.py MookAPI:app -p $PIDFILE -D --name $NAME"
+DAEMON_ARGS="sync -D"
 
 #
 # Function that starts the daemon/service
@@ -45,10 +42,8 @@ do_start()
 	#   0 if daemon has been started
 	#   1 if daemon was already running
 	#   2 if daemon could not be started
-	/usr/bin/mongod --dbpath /var/lib/mongodb/ --quiet --repair
-	/usr/bin/mongod --dbpath /var/lib/mongodb/ --logpath /var/log/mongodb/mongodb.log --fork
-	start-stop-daemon --start --quiet --pidfile $PIDFILE --exec $DAEMON --test > /dev/null || return 1
-	start-stop-daemon --start --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_ARGS || return 2
+	source {{ mook_path }}{{ mook_name }}/api/env/bin/activate 
+	start-stop-daemon --quiet --start --chuid $OWNER:$OWNER --user $OWNER --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_ARGS
 }
 
 #
@@ -61,8 +56,7 @@ do_stop()
 	#   1 if daemon was already stopped
 	#   2 if daemon could not be stopped
 	#   other if a failure occurred
-	/usr/bin/mongod --dbpath /var/lib/mongodb/ --shutdown
-	start-stop-daemon --quiet --stop --pidfile $PIDFILE
+	start-stop-daemon --quiet --stop --chuid $OWNER:$OWNER --user $OWNER --pidfile $PIDFILE
 	RETVAL="$?"
 	[ "$RETVAL" = 2 ] && return 2
 	# Wait for children to finish too if this is a daemon that forks
@@ -71,7 +65,7 @@ do_stop()
 	# that waits for the process to drop all resources that could be
 	# needed by services started subsequently.  A last resort is to
 	# sleep for some time.
-	start-stop-daemon --stop --quiet --oknodo --retry=0/30/KILL/5 --exec $DAEMON
+	start-stop-daemon --stop --quiet --chuid $OWNER:$OWNER --user $OWNER --oknodo --retry=0/30/KILL/5 --exec $DAEMON
 	[ "$?" = 2 ] && return 2
 	# Many daemons don't delete their pidfiles when they exit.
 	rm -f $PIDFILE
@@ -81,8 +75,8 @@ do_stop()
 #
 # Function that sends a SIGHUP to the daemon/service
 #
-do_reload() {
-	start-stop-daemon --stop --signal HUP --quiet --pidfile $PIDFILE
+do_restart() {
+	start-stop-daemon --stop --signal HUP --quiet --chuid $OWNER:$OWNER --user $OWNER --pidfile $PIDFILE
 	return 0
 }
 
@@ -106,9 +100,9 @@ case "$1" in
   status)
 	status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
 	;;
-  reload)
+  restart)
 	log_daemon_msg "Reloading $DESC" "$NAME"
-	do_reload
+	do_restart
 	log_end_msg $?
 	;;
   restart|force-reload)
@@ -141,3 +135,4 @@ case "$1" in
 esac
 
 :
+
