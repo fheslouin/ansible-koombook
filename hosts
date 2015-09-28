@@ -1,5 +1,5 @@
 localhost ansible_connection=local
 
 [koombook]
-192.168.1.2
+192.168.1.52
 #51.254.115.185
