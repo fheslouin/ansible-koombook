@@ -3,5 +3,5 @@
   roles:
     - firstStart
     - logs
-    - nginx
-    - appinventor
+    #- nginx
+    #- appinventor

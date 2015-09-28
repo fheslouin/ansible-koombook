@@ -1,0 +1,26 @@
+---
+# Variables listed here are applicable to all host groups
+hostname: koombook.lan
+nginx_port: 80
+wikipedia_server_name: wikipedia.{{hostname}}
+kalite_server_name: kalite.{{hostname}}
+bsfcampus_server_name: bsfcampus.{{hostname}}
+gutemberg_server_name: gutemberg.{{hostname}}
+hotspotip: 192.168.2.1
+hotspot_interface: wlan0
+lan_interface: eth0
+client_interface: wlan1
+hotspot_name: koombook
+username: koombook
+kiwix_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
+gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
+nginx_remove_default_vhost: true
+timezone: Europe/Paris
+central_server: ansible@ns430770.ip-37-187-151.eu
+filer_bsf: http://filer.bsf-intranet.org
+
+battery_capacity: 7800
+charging_current: 700
+power_on_button_delay: 500
+power_off_button_delay: 8000
+enable_power_button_power_off: 1
