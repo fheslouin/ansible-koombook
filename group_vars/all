@@ -14,8 +14,8 @@ lan_interface: eth0
 client_interface: wlan1
 
 #Learning managment system "mook" variables
-mook_name:bsfcampus
-mook_path:/home/
+mook_name: bsfcampus
+mook_path: /home/
 
 #System
 username: koombook
