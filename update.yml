@@ -2,6 +2,6 @@
 - hosts: localhost
   roles:
     - firstStart
-    - logs
+    #- logs
     #- nginx
     #- appinventor
