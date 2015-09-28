@@ -1,9 +1,2 @@
 #!/bin/sh
-if [ -f /var/run/ansible-pull.lock ]
-then
-        exit 0
-else
-	touch /var/run/ansible-pull.lock
-	sleep 30 && ansible-pull -d {{ workdir }} -i hosts -U {{ repo_url }} update.yml >> {{ logfile }} 2>&1 &
-	rm -f /var/run/ansible-pull.lock
-fi
+/usr/local/bin/ansible-pull -d {{ workdir }} -i hosts -U {{ repo_url }} update.yml >> {{ logfile }} 2>&1
