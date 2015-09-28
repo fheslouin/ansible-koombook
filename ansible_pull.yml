@@ -62,4 +62,4 @@
       template: src=templates/etc_logrotate.d_ansible-pull.j2 dest=/etc/logrotate.d/ansible-pull owner=root group=root mode=0644
 
     - name: Reboot system
-      shell: reboot
+      raw: reboot
