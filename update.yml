@@ -5,6 +5,3 @@
     - logs
     #- nginx
     #- appinventor
-
-  tasks:
-	- file: path=/var/run/ansible-pull.lock state=absent
