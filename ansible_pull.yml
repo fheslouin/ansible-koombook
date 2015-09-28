@@ -60,8 +60,6 @@
 
     - name: Create logrotate entry for ansible-pull.log
       template: src=templates/etc_logrotate.d_ansible-pull.j2 dest=/etc/logrotate.d/ansible-pull owner=root group=root mode=0644
-    
-    - file: path=/var/run/ansible-pull.lock state=absent
 
     - name: Reboot system
       raw: reboot
