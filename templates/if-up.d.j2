@@ -1,7 +1,4 @@
 #!/bin/sh
-
-if ([ $reason = "RENEW" ] && [ $old_ip_address != $new_ip_address ]) ; then
+#if [ "$reason" = "BOUND" ] || [ "$reason" = "RENEW" ]; then
     /usr/local/bin/ansible-pull -d {{ workdir }} -i hosts -U {{ repo_url }} update.yml >> {{ logfile }} 2>&1
-elif ([ $reason = "BOUND" ]) ; then
-    /usr/local/bin/ansible-pull -d {{ workdir }} -i hosts -U {{ repo_url }} update.yml >> {{ logfile }} 2>&1
-fi
+#fi

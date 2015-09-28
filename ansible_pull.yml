@@ -41,6 +41,7 @@
        - python-setuptools
        - git
        - sudo
+       - vim
 
     - name: Installe ansible
       pip: name=ansible
@@ -56,7 +57,7 @@
               owner=root group=root mode=0644
 
     - name: Create entry to clone/pull git repository
-      template: src=templates/if-up.d.j2 dest=/etc/dhcp/dhclient-enter-hooks.d/ansible-pull owner=root group=root mode=0755
+      template: src=templates/if-up.d.j2 dest=/etc/dhcp/dhclient-exit-hooks.d/ansible-pull owner=root group=root mode=0755
 
     #- name: Create logrotate entry for ansible-pull.log
     #  template: src=templates/etc_logrotate.d_ansible-pull.j2 dest=/etc/logrotate.d/ansible-pull owner=root group=root mode=0644
