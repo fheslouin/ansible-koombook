@@ -2,7 +2,7 @@
 if [ -f /var/run/ansible-pull.lock ]
 then
         exit 0
-elif
+else
 	touch /var/run/ansible-pull.lock
-	ansible-pull -d {{ workdir }} -i hosts -U {{ repo_url }} update.yml >> {{ logfile }} 2>&1
+	sleep 30 && ansible-pull -d {{ workdir }} -i hosts -U {{ repo_url }} update.yml >> {{ logfile }} 2>&1 &
 fi
