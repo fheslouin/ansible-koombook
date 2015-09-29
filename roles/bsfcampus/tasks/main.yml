@@ -7,10 +7,13 @@
       - python-pkg-resources
       - unzip
 
+  - name: Installe virtualenv
+    pip: name=virtualenv
+
 ####
 # BACK END CONFIGURATION
 ####
-  - git: repo=https://bsfcampus@bitbucket.org/gryzzlab/mook-bsf-api.git dest={{ mook_path }}{{ mook_name }}/api
+  - git: repo=git@bitbucket.org:gryzzlab/mook-bsf-api.git dest={{ mook_path }}{{ mook_name }}/api
 
   - name: Update setuptools
     pip: name=setuptools extra_args="-U"
@@ -39,7 +42,7 @@
     file: path=/etc/uwsgi/vassals state=directory owner=root group=root mode=0751
 
   - name: Copy uwsgi config files
-    template: src=uwsgi-api.ini.j2 dest=/etc/uwsgi/vassals
+    template: src=uwsgi-api.ini.j2 dest=/etc/uwsgi/vassals/uwsgi-api.ini
 
   - name: Create log dir for uwsgi
     file: path=/var/log/uwsgi state=directory owner=www-data group=www-data mode=0751
@@ -89,10 +92,12 @@
 # FRONT END CONFIGURATION
 ####
 
-  - git: repo=https://bsfcampus@bitbucket.org/gryzzlab/mook-bsf-front-end-backbone.git dest={{ mook_path }}{{ mook_name }}/front
+  - git: repo=git@bitbucket.org:gryzzlab/mook-bsf-front-end-backbone.git dest={{ mook_path }}{{ mook_name }}/front
 
   - name: download the vendor package
     unarchive: src={{filer_bsf}}/vendor.tgz dest={{ mook_path }}{{ mook_name }}/front copy=no
 
   - name: Copy config.js config files
     template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front
+
+  - shell: echo "{{ ansible_hostname }},mook\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"

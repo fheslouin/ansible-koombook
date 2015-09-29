@@ -30,5 +30,7 @@
 - lineinfile: dest=/etc/network/interfaces regexp='wpa' state=absent
   when: st.stat.exists == False
 
-- raw: /sbin/shutdown -h now
-  when: st.stat.exists == False
+# - raw: /sbin/shutdown -h now
+#   when: st.stat.exists == False
+
+- shell: echo "{{ ansible_hostname }},firstStart\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"

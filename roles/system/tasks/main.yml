@@ -33,11 +33,11 @@
       notify: update timezone
 
     - name: Copy patch U-Boot package
-      get_url: url={{filer_bsf}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linux-u-boot-lime2_4.3_armhf.deb owner=root group=root mode=755
+      get_url: url={{filer_bsf}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linuxUboot.deb owner=root group=root mode=755
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
     - name: install patch U-Boot package
-      apt:  deb=/tmp/linux-u-boot-lime2_4.3_armhf.deb
+      apt:  deb=/tmp/linuxUboot.deb
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
     - name: List services to restart (1/2)
@@ -62,4 +62,4 @@
     - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
-    - raw: cat "{{ ansible_hostname }},system\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"
+    - shell: echo "{{ ansible_hostname }},system\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"

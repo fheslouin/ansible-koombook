@@ -2,8 +2,8 @@
 #- hosts: localhost
 - hosts: koombook
   roles:
-    #- uuidKoomBook
-    - system
+    #- system
+    #- firstStart
     #- nginx
     #- dnsmasq
     #- hostapd
@@ -15,5 +15,5 @@
     #- gutemberg
     #- appinventor
     #- fex
-    #- bsfcampus
+    - bsfcampus
     #- mongodb
