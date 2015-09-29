@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: koombook
   roles:
     - firstStart
     #- logs
