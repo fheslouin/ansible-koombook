@@ -24,3 +24,6 @@
 - name: install ideasbox package
   apt: deb=/tmp/ideasbox_0.0.1-1_amd64.deb
   when: ansible_architecture == 'x86_64' and st.stat.exists == 'false'
+
+- tasks:
+  include: installed_software.yml task=ideasbox

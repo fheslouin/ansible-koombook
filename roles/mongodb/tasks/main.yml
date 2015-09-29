@@ -35,5 +35,6 @@
   - name: Copy mongodb conf
     copy: src=mongodb.conf dest=/etc/mongodb.conf owner=root group=root
     when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
-  
-  - shell: echo "{{ ansible_hostname }},mongodb\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"
+
+  - tasks:
+    include: installed_software.yml task=mongodb

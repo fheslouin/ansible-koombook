@@ -17,3 +17,6 @@
 
     - name: Start hostapd
       service: name=hostapd state=started
+
+    - tasks:
+      include: installed_software.yml task=hostapd

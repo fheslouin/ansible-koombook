@@ -16,3 +16,6 @@
       file: src=/etc/nginx/sites-available/kiwix dest=/etc/nginx/sites-enabled/kiwix state=link
       when: vhost.changed
       notify: restart nginx
+
+    - tasks:
+      include: installed_software.yml task=wikipedia

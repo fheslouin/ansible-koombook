@@ -60,6 +60,7 @@
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
     - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
-      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"   
 
-    - shell: echo "{{ ansible_hostname }},system\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"
+    - tasks:
+      include: installed_software.yml task=system

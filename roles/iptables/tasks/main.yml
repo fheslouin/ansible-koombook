@@ -23,3 +23,6 @@
     - name: Copy forwarding file
       copy: src=forwarding dest=/etc/network/if-up.d/forwarding owner=root group=root mode=755 backup=yes
       when: iptables.changed
+
+    - tasks:
+      include: installed_software.yml task=iptables

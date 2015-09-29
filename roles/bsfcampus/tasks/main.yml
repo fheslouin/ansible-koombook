@@ -19,13 +19,13 @@
     pip: name=setuptools extra_args="-U"
 
   - name: Install python requierment
-    pip: requirements=requirements.txt chdir={{ mook_path }}{{ mook_name }}/api virtualenv={{ mook_path }}{{ mook_name }}/api
+    pip: requirements=requirements.txt chdir={{ mook_path }}{{ mook_name }}/api virtualenv_command=/usr/local/bin/virtualenv virtualenv={{ mook_path }}{{ mook_name }}/api/venv
 
   - name: Create static dir
     file: path={{ mook_path }}{{ mook_name }}/static state=directory owner=www-data group=www-data mode=0751
 
   - name: Copy settings_local config files
-    template: src=settings_local.py.j2 dest={{ mook_path }}{{ mook_name }}/api
+    template: src=settings_local.py.j2 dest={{ mook_path }}{{ mook_name }}/api/settings_local.py
 
   - name: Setup startup file for uwsgi
     copy: src=settings_central.py dest={{ mook_path }}{{ mook_name }}/api owner=root group=root mode=755
@@ -35,14 +35,17 @@
 ####
 
   - name: Installe uwsgi
-    pip: name=uwsgi
+    pip: name=uwsgi virtualenv_command=/usr/local/bin/virtualenv virtualenv={{ mook_path }}{{ mook_name }}/api/venv
 
     #Vérifier si le répertoir n'existe pas déjà
   - name: Create dir for emperor
-    file: path=/etc/uwsgi/vassals state=directory owner=root group=root mode=0751
+    file: path=/etc/uwsgi/vassals state=directory owner=www-data group=www-data mode=0751
 
   - name: Copy uwsgi config files
-    template: src=uwsgi-api.ini.j2 dest=/etc/uwsgi/vassals/uwsgi-api.ini
+    template: src=uwsgi-api.ini.j2 dest={{ mook_path }}{{ mook_name }}/api/uwsgi-api.ini
+
+  - name: Symbolic link for wsgi ini file
+    file: src={{ mook_path }}{{ mook_name }}/api/uwsgi-api.ini dest=/etc/uwsgi/vassals/uwsgi-{{ mook_name }}-api.ini state=link
 
   - name: Create log dir for uwsgi
     file: path=/var/log/uwsgi state=directory owner=www-data group=www-data mode=0751
@@ -98,6 +101,7 @@
     unarchive: src={{filer_bsf}}/vendor.tgz dest={{ mook_path }}{{ mook_name }}/front copy=no
 
   - name: Copy config.js config files
-    template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front
+    template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front/config.js
 
-  - shell: echo "{{ ansible_hostname }},mook\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"
+  - tasks:
+    include: installed_software.yml task=mook

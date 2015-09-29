@@ -16,3 +16,6 @@
       file: src=/etc/nginx/sites-available/gutemberg dest=/etc/nginx/sites-enabled/gutemberg state=link
       when: vhost.changed
       notify: restart nginx
+
+    - tasks:
+      include: installed_software.yml task=gutemberg
