@@ -45,6 +45,6 @@
       register: services
       changed_when: False
 
-    - name: Mount hard drive
-      file: path=/media/hdd state=directory
-      mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
+    - file: path=/media/hdd state=directory
+
+    - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
