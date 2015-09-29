@@ -4,6 +4,8 @@
     #- firstStart
     - system
     - logs
-    - fex
-    #- nginx
+    - nginx
+    - dnsmasq
+    - hostapd
+    - monitoring
     #- appinventor

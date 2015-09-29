@@ -45,6 +45,16 @@
       register: services
       changed_when: False
 
+    - name: Copy fex.file
+      template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
+    - name: Build binary from fex
+      shell: /usr/local/bin/fex2bin lime2.fex > lime2.bin chdir=/boot/bin/
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
     - file: path=/media/hdd state=directory
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
     - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
