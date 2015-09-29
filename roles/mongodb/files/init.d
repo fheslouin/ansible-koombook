@@ -53,7 +53,7 @@ DESC=database
 # Default defaults.  Can be overridden by the /etc/default/$NAME
 NAME=mongodb
 CONF=/etc/mongodb.conf
-DATA=/var/lib/mongodb
+DATA=/media/hdd/mongodb
 LOGDIR=/var/log/mongodb
 PIDFILE=/var/run/$NAME.pid
 LOGFILE=$LOGDIR/$NAME.log  # Server logfile

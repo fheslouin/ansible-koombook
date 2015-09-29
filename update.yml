@@ -1,11 +1,4 @@
 ---
 - hosts: localhost
   roles:
-    #- firstStart
-    - system
-    - logs
-    - nginx
-    - dnsmasq
-    - hostapd
-    - monitoring
-    #- appinventor
+    - firstStart
