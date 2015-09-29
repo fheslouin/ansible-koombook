@@ -16,10 +16,10 @@
   register: p
 
 - set_fact: hdd_access="0"
-  when: p.stat.isdir is not defined
+  when: p.stat.isdir is not defined and st.stat.exists == False
 
 - set_fact: hdd_access="1"
-  when: p.stat.isdir is defined
+  when: p.stat.isdir is defined and st.stat.exists == False
 
 - copy: content={{ kbname }},{{ UUID }},{{hdd_access}},{{ ansible_default_ipv4["macaddress"] }},{{ ansible_default_ipv4["address"] }}\n dest=/etc/firstStart.csv
   when: st.stat.exists == False

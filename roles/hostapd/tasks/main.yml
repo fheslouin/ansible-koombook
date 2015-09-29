@@ -1,6 +1,7 @@
 ---
-#- name: Install hostapd
-#      apt: name=hostapd state=latest
+    - name: Install hostapd
+      apt: name=hostapd state=latest
+      when: ansible_architecture == 'x86_64'
 
     - name: Copy hostapd.conf file
       template: src=hostapd.conf.j2 dest=/etc/hostapd/hostapd.conf owner=root group=root mode=755 backup=yes

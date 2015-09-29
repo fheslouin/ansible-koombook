@@ -61,3 +61,6 @@
 
     - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+
+    - raw: cat "{{ ansible_hostname }},system\n" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"
+      when: st.stat.exists == False
