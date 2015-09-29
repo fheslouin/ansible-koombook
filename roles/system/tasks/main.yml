@@ -2,9 +2,6 @@
     - name: Update packages list
       apt: update_cache=yes
 
-    - name: Upgrade packages
-      apt: upgrade=safe
-
     - name: Install more package
       apt: name={{ item }} state=latest
       with_items:
@@ -16,6 +13,9 @@
        - python-pip
        - bash-completion
        - aptitude
+
+    - name: Upgrade packages
+      apt: upgrade=safe
 
     - name: Add user KoomBook
       user: name={{username}}

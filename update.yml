@@ -4,5 +4,6 @@
     #- firstStart
     - system
     - logs
+    - fex
     #- nginx
     #- appinventor
