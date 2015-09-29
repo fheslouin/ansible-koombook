@@ -9,7 +9,7 @@
 - hostname: name="{{ kb_name }}"    
   when: st.stat.exists == False
 
-- lineinfile: dest=/etc/hosts regexp='^127.0.0.1' insertafter='127.0.0.1' line='127.0.0.1 localhost {{ kb_name }} {{ hostname }}' owner=root group=root mode=0644
+- lineinfile: dest=/etc/hosts regexp='^127.0.0.1' insertafter='127.0.0.1' line='127.0.0.1 localhost {{ ansible_hostname }} {{ hostname }}' owner=root group=root mode=0644
   when: st.stat.exists == False
 
 - stat: path=/media/hdd/present
@@ -21,7 +21,7 @@
 - set_fact: hdd_access="1"
   when: p.stat.isdir is defined
 
-- copy: content={{ kb_name }},{{ UUID }},{{hdd_access}},{{ ansible_default_ipv4["macaddress"] }},{{ ansible_default_ipv4["address"] }}\n dest=/etc/firstStart.csv
+- copy: content={{ ansible_hostname }},{{ UUID }},{{hdd_access}},{{ ansible_default_ipv4["macaddress"] }},{{ ansible_default_ipv4["address"] }}\n dest=/etc/firstStart.csv
   when: st.stat.exists == False
 
 - raw: cat /etc/firstStart.csv | ssh {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"

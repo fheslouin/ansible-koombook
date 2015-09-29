@@ -1,6 +1,6 @@
 ---
 #Apps
-central_server: ansible@ns430770.ip-37-187-151.eu
+central_server: ansible@37.187.151.52
 filer_bsf: http://filer.bsf-intranet.org
 kiwix_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
 gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
