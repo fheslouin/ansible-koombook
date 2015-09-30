@@ -26,4 +26,4 @@
   when: ansible_architecture == 'x86_64' and st.stat.exists == 'false'
 
 - tasks:
-  include: ../installed_software.yml task=ideasbox
+  include: ../../installed_software.yml task=ideasbox
