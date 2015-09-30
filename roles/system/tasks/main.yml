@@ -63,4 +63,4 @@
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"   
 
     - tasks:
-      include: ../../installed_software.yml task=system
+      include: roles/installed_software/installed_software.yml task=system
