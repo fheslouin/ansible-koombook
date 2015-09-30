@@ -1,8 +1,12 @@
 ---
   - file: path=/opt/mongo state=directory mode=0755
 
+  - name: download mongo package
+    get_url: url={{filer_bsf}}/mongo.zip dest=/tmp/mongo.zip
+    when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+
   - name: Copy and unzip mongodb armhf version archive
-    unarchive: src={{filer_bsf}}/mongo.zip dest=/opt/ copy=no
+    unarchive: src=/tmp/mongo.zip dest=/opt/ copy=no
     when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
   - file: src=/opt/mongo/bin/mongod dest=/usr/bin/mongod state=link
