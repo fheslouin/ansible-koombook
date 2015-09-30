@@ -1,30 +1,33 @@
 ---
-    - pip: name=ka-lite-static
-      
-    - command: kalite start
-      
-    - command: mv -f /root/.kalite/ /home/koombook/
-      
-    - file: path=/home/koombook/.kalite/ owner=koombook group=koombook mode=755
+    - name: Check if kalite is installed
+      command: dpkg-query -W ka-lite-raspberry-pi
+      register: kalite_check_deb
+      failed_when: kalite_check_deb.rc > 1
+      changed_when: kalite_check_deb.rc == 1
 
-    - name: Setup startup file
-      copy: src=kalite dest=/etc/init.d/kalite owner=root group=root mode=755
+    - name: download Ka lite
+      get_url: url={{filer_bsf}}/kalite014ARM.deb dest=/tmp/kalite014ARM.deb
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
-    - name: Enable service kalite
-      service: name=kalite enabled=yes
+    - shell: export DEBIAN_FRONTEND=noninteractive
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
-    - name: Copy nginx vhost
-      template: src=kalite.vhost.j2 dest=/etc/nginx/sites-available/kalite
-      register: vhost
+    - name: configure kalite
+      debconf: name=ka-lite-raspberry-pi question='ka-lite/user' value='ka-lite' vtype='string'
+      debconf: name=ka-lite-raspberry-pi question='ka-lite/init' value='true' vtype='boolean'
+      debconf: name=ka-lite-raspberry-pi question='ka-lite/download-assessment-items' value='false' vtype='boolean'
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
-    - name: Nginx enable Virtual host
-      file: src=/etc/nginx/sites-available/kalite dest=/etc/nginx/sites-enabled/kalite state=link
-      when: vhost.changed
-      notify: restart nginx
+    - name: install kalite
+      apt: deb=/tmp/kalite014ARM.deb force=yes
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
-    - file: path=/home/koombook/.kalite/content state=absent
-    
-    - file: src=/media/hdd/kalite/content/ dest=/home/koombook/.kalite/content state=link
+    - file: path=/var/ka-lite/.kalite/content state=absent
+
+    - file: src=/media/hdd/kalite/content/ dest=/var/ka-lite/.kalite/content state=link
+
+    # - name: create super user
+    #   django_manage: command="createsuperuser --noinput --username=admin --email=admin@example.com" app_path=/usr/share/kalite/python-packages/django/conf/project_template/
 
     - tasks:
       include: ../../../installed_software.yml task=kalite

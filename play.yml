@@ -1,17 +1,17 @@
 ---
-- hosts: koombook_vagrant
+- hosts: koombook
   roles:
-    #- system
-    #- firstStart
-    - nginx
-    - dnsmasq
-    - hostapd
-    - iptables
-    - kiwix
-    #- kalite
-    - monitoring
-    - ideasbox
-    - gutemberg
-    - appinventor
-    - bsfcampus
-    - mongodb
+    # - system
+    # - firstStart
+    # - nginx
+    # - dnsmasq
+    # - hostapd
+    # - iptables
+    # - kiwix
+    # - kalite
+    # - monitoring
+    # - ideasbox
+    # - gutemberg
+    # - appinventor
+    # - bsfcampus
+    # - mongodb

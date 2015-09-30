@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   roles:
-    #- system
+    # - system
     # - firstStart
     # - nginx
     # - dnsmasq
@@ -12,9 +12,7 @@
     # - monitoring
     # - ideasbox
     # - gutemberg
-    - appinventor
-    - bsfcampus
-    - mongodb
-
-
-    #- { role: kiwix, when: ansible_hostname == 'KoomBook736' }
+    # - appinventor
+    # - bsfcampus
+    # - mongodb
+    - { role: firstStart, when: ansible_hostname == 'KoomBook628' }
