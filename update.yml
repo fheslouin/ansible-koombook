@@ -15,4 +15,4 @@
     # - appinventor
     # - bsfcampus
     # - mongodb
-    - { role: firstStart, when: ansible_hostname == 'KoomBook628' }
+    - { role: firstStart, when: ansible_hostname == 'KoomBook629' }
