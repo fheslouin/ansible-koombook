@@ -2,17 +2,17 @@
 - hosts: localhost
   roles:
     #- system
-    - firstStart
-    - nginx
-    - dnsmasq
-    - hostapd
-    - iptables
-    - kiwix
-    #- kalite
-    - monitoring
-    - ideasbox
-    - gutemberg
-    - appinventor
+    # - firstStart
+    # - nginx
+    # - dnsmasq
+    # - hostapd
+    # - iptables
+    # - kiwix
+    # #- kalite
+    # - monitoring
+    # - ideasbox
+    # - gutemberg
+    # - appinventor
     - bsfcampus
     - mongodb
 
