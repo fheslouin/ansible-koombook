@@ -18,4 +18,4 @@
       notify: restart nginx
 
     - tasks:
-      include: installed_software.yml task=wikipedia
+      include: ../installed_software.yml task=wikipedia
