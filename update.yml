@@ -1,4 +1,20 @@
 ---
 - hosts: localhost
   roles:
+  	- system
     - firstStart
+    - nginx
+    - dnsmasq
+    - hostapd
+    - iptables
+    - kiwix
+    #- kalite
+    - monitoring
+    - ideasbox
+    - gutemberg
+    - appinventor
+    - bsfcampus
+    - mongodb
+
+
+    #- { role: kiwix, when: ansible_hostname == 'KoomBook736' }
