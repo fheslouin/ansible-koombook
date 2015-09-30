@@ -19,7 +19,7 @@
     pip: name=setuptools extra_args="-U"
 
   - name: Install python requierment
-    pip: requirements=requirements.txt chdir={{ mook_path }}{{ mook_name }}/api virtualenv_command=/usr/local/bin/virtualenv virtualenv={{ mook_path }}{{ mook_name }}/api/venv
+    pip: requirements=requirements.txt chdir={{ mook_path }}{{ mook_name }}/api virtualenv_command=/usr/local/bin/virtualenv virtualenv={{ mook_path }}{{ mook_name }}/api/env
 
   - name: Create static dir
     file: path={{ mook_path }}{{ mook_name }}/static state=directory owner=www-data group=www-data mode=0751
