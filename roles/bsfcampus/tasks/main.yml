@@ -97,8 +97,11 @@
 
   - git: repo=git@bitbucket.org:gryzzlab/mook-bsf-front-end-backbone.git dest={{ mook_path }}{{ mook_name }}/front
 
-  - name: download the vendor package
-    unarchive: src={{filer_bsf}}/vendor.tgz dest={{ mook_path }}{{ mook_name }}/front copy=no
+  - name: download vendor package
+    get_url: url={{filer_bsf}}/vendor.tgz dest=/tmp/vendor.tgz
+
+  - name: unarchive the vendor package
+    unarchive: src=/tmp/vendor.tgz dest={{ mook_path }}{{ mook_name }}/front copy=no
 
   - name: Copy config.js config files
     template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front/config.js
