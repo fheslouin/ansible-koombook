@@ -34,8 +34,8 @@
 # UWSGI CONFIGURATION
 ####
 
-  - name: Installe uwsgi
-    pip: name=uwsgi virtualenv={{ mook_path }}{{ mook_name }}/api/venv
+  - name: Install uwsgi
+    pip: name=uwsgi 
 
     #Vérifier si le répertoir n'existe pas déjà
   - name: Create dir for emperor
