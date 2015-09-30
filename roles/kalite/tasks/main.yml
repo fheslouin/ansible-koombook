@@ -27,4 +27,4 @@
     - file: src=/media/hdd/kalite/content/ dest=/home/koombook/.kalite/content state=link
 
     - tasks:
-      include: ../../installed_software.yml task=kalite
+      include: ../../../installed_software.yml task=kalite

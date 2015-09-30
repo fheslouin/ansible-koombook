@@ -16,4 +16,4 @@
       service: name=appinventor enabled=yes
 
     - tasks:
-      include: ../../installed_software.yml task=appinventor
+      include: ../../../installed_software.yml task=appinventor

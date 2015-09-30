@@ -23,4 +23,4 @@
       notify: restart nginx
 
     - tasks:
-      include: ../../installed_software.yml task=nginx
+      include: ../../../installed_software.yml task=nginx
