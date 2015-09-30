@@ -12,4 +12,4 @@
       shell: cd /root/scripts/ && ./eZServerMonitor.sh -h
 
     - tasks:
-      include: roles/installed_software/installed_software.yml task=monitoring
+      include: ../../installed_software.yml task=monitoring

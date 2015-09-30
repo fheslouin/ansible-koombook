@@ -104,4 +104,4 @@
     template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front/config.js
 
   - tasks:
-    include: roles/installed_software/installed_software.yml task=mook
+    include: ../../installed_software.yml task=mook

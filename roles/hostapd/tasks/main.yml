@@ -19,4 +19,4 @@
       service: name=hostapd state=started
 
     - tasks:
-      include: roles/installed_software/installed_software.yml task=hostapd
+      include: ../../installed_software.yml task=hostapd
