@@ -14,7 +14,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="Serveur de synchro {{mook_name}}"
 NAME={{mook_name}}-sync-daemon
-DAEMON="{{ mook_path }}{{ mook_name }}/api/env/bin/python2.7"
+DAEMON="{{ mook_path }}{{ mook_name }}/api/env/bin/python2.7 {{ mook_path }}{{ mook_name }}/api/manage.py"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
@@ -31,7 +31,7 @@ OWNER=www-data
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
-DAEMON_ARGS="{{ mook_path }}{{ mook_name }}/api/manage.py sync -D"
+DAEMON_ARGS=" sync -D"
 
 #
 # Function that starts the daemon/service
