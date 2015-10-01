@@ -6,7 +6,6 @@
     # - nginx
     # - dnsmasq
     # - hostapd
-    # - iptables
     # - kiwix
     # - kalite
     # - monitoring
@@ -15,3 +14,4 @@
     # - appinventor
     # - bsfcampus
     # - mongodb
+    # - iptables

@@ -1,2 +1,2 @@
 ---
-- shell: echo "{{ ansible_hostname }},{{ task }}" | ssh {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"
+- shell: echo "{{ ansible_hostname }},{{ task }}" | ssh -p 443 {{ central_server }} "cat >> ./ansible/installed_software/sofware_list.csv"

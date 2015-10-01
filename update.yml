@@ -1,19 +1,19 @@
 ---
 - hosts: localhost
   roles:
-    # - system
-    # - firstStart
-    # - nginx
-    # - dnsmasq
-    # - hostapd
-    # - iptables
-    # - kiwix
-    # #- kalite
-    # - monitoring
-    # - ideasbox
-    # - gutemberg
-    # - appinventor
-    # - bsfcampus
-    # - mongodb
+     - system
+     - firstStart
+     - nginx
+     - dnsmasq
+     - hostapd
+     - iptables
+     - kiwix
+     #- kalite
+     - monitoring
+     - ideasbox
+     - gutemberg
+     - appinventor
+     - bsfcampus
+     - mongodb
     # Play a role for a specific device
     #- { role: hostapd, when: ansible_hostname == 'KoomBook628' }

@@ -27,6 +27,12 @@
   - name: Copy settings_local config files
     template: src=settings_local.py.j2 dest={{ mook_path }}{{ mook_name }}/api/settings_local.py
 
+  - name: Retrieve KoomBook info 
+    set_fact: koombookName="{{ lookup('csvfile', 'id file=/etc/firstStart.csv delimiter=, col=1') }}" uuid="{{ lookup('csvfile', 'id file=/etc/firstStart.csv delimiter=, col=2') }}"
+
+  - name: add conf for KoomBook
+    lineinfile: dest={{ mook_path }}{{ mook_name }}/api/settings_local.py regexp='' insertafter=EOF line='    CENTRAL_SERVER_KEY = {{koombookName}} \n    CENTRAL_SERVER_SECRET = {{uuid}}' owner=www-data group=www-data mode=755
+
   - name: Setup startup file for uwsgi
     copy: src=settings_central.py dest={{ mook_path }}{{ mook_name }}/api owner=root group=root mode=755
 
