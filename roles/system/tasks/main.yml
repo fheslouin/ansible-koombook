@@ -31,10 +31,10 @@
       copy: src=bashrc dest=/root/.bashrc owner=root
 
     - name: Copy vimrc for root
-      copy: src=vim dest=/root/.ssh/known_hosts owner=root
+      copy: src=vim dest=/etc/vim/vimrc owner=root
 
     - name: Copy known_hosts file
-      copy: src=known_hosts dest=/etc/vim/vimrc owner=root
+      copy: src=known_hosts dest=/root/.ssh/known_hosts owner=root
 
     - hostname: name={{ hostname }}
 
