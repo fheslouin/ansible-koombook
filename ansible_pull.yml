@@ -15,7 +15,7 @@
 #
 ---
 
-- hosts: koombook_vagrant
+- hosts: koombook
   remote_user: root
 
   vars:
