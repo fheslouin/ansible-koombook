@@ -1,18 +1,18 @@
 ---
 - hosts: localhost
   roles:
-     - system
-     - firstStart
-     - nginx
-     - dnsmasq
-     - hostapd
-     - iptables
-     - kiwix
-     #- kalite
-     - monitoring
-     - ideasbox
-     - gutemberg
-     - appinventor
+     # - system
+     # - firstStart
+     # - nginx
+     # - dnsmasq
+     # - hostapd
+     # - iptables
+     # - kiwix
+     # #- kalite
+     # - monitoring
+     # - ideasbox
+     # - gutemberg
+     # - appinventor
      - bsfcampus
      - mongodb
     # Play a role for a specific device
