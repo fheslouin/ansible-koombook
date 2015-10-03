@@ -6,7 +6,7 @@
      # - nginx
      # - dnsmasq
      # - hostapd
-      - iptables
+     # - iptables
      # - kiwix
      # #- kalite
      # - monitoring
