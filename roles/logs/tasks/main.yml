@@ -3,3 +3,5 @@
 - set_fact: date="{{ ansible_date_time["date"]}}"
   
 - shell: cd /var/log/ && tar zcf - dmesg kern.log syslog | ssh -p 443 {{ central_server }} "cat >> ./ansible/logs/"{{ ansible_hostname }}"-"{{ date }}"".tgz
+
+rsync -azP /var/log/nginx/ {{ central_server }}:443/ansible/logs/
