@@ -46,9 +46,9 @@
       get_url: url={{filer_bsf}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linuxUboot.deb owner=root group=root mode=755
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
-    - name: install patch U-Boot package
-      apt:  deb=/tmp/linuxUboot.deb
-      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
+    # - name: install patch U-Boot package
+    #   apt:  deb=/tmp/linuxUboot.deb
+    #   when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
     - name: List services to restart (1/2)
       shell: checkrestart | grep ^service | awk '{print $2}'
