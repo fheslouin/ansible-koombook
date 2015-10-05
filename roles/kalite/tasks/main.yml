@@ -6,7 +6,7 @@
       changed_when: kalite_check_deb.rc == 1
 
     - name: download Ka lite
-      get_url: url={{filer_bsf}}/kalite014ARM.deb dest=/tmp/kalite014ARM.deb
+      get_url: url={{filer_bsf}}/kalite014ARM.deb dest=/home/kalite014ARM.deb
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
     - shell: export DEBIAN_FRONTEND=noninteractive
@@ -19,7 +19,7 @@
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
     - name: install kalite
-      apt: deb=/tmp/kalite014ARM.deb force=yes
+      apt: deb=/home/kalite014ARM.deb force=yes
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and kalite_check_deb.rc == 1
 
     - file: path=/var/ka-lite/.kalite/content state=absent
