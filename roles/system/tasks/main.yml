@@ -74,6 +74,7 @@
 
     - mount: name=/media/hdd/ src=/dev/sda1 fstype=ext4 state=mounted
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"   
+      ignore_errors: yes
 
     - tasks:
       include: ../../../installed_software.yml task=system
