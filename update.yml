@@ -2,7 +2,7 @@
 - hosts: localhost
   roles:
       # - system
-       - firstStart
+      #- firstStart
       # - nginx
       # - dnsmasq
       # - hostapd
@@ -16,4 +16,5 @@
        - bsfcampus
        - mongodb
     # Play a role for a specific device
-    #- { role: hostapd, when: ansible_hostname == 'KoomBook628' }
+    - { role: bsfcampus, when: ansible_hostname == 'KoomBook918' }
+    - { role: mongodb, when: ansible_hostname == 'KoomBook918' }
