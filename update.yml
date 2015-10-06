@@ -16,5 +16,5 @@
       # - bsfcampus
       # - mongodb
     # Play a role for a specific device
-    - { role: bsfcampus, when: ansible_hostname == 'KoomBook918' }
-    - { role: mongodb, when: ansible_hostname == 'KoomBook918' }
+    #- { role: bsfcampus, when: ansible_hostname == 'KoomBook918' }
+    #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }
