@@ -30,6 +30,6 @@
 - lineinfile: dest=/etc/network/interfaces regexp='wpa' state=absent
   when: st.stat.exists == False
 
- - command: /sbin/shutdown -h now
+- command: /sbin/shutdown -h now
 # - command: /sbin/reboot
-   when: st.stat.exists == False
+  when: st.stat.exists == False
