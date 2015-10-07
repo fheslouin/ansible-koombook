@@ -85,14 +85,17 @@
 # INIT SCRIPT
 ####
 
-  - name: Setup startup file for sync-daemon
-    template: src=sync-daemon dest=/etc/init.d/{{ mook_name }}-sync owner=root group=root mode=755
+  # - name: Setup startup file for sync-daemon
+  #   template: src=sync-daemon dest=/etc/init.d/{{ mook_name }}-sync owner=root group=root mode=755
 
   - name: Setup startup file for uwsgi
     copy: src=uwsgi dest=/etc/init.d/uwsgi owner=root group=root mode=755
 
-  - name: Enable service sync daemon
-    service: name={{ mook_name }}-sync enabled=yes
+  - name: Copy in rc.local to start the deamon
+    template: src=rc.local.j2 dest=/etc/rc.local owner=root group=root mode=755
+
+  # - name: Enable service sync daemon
+  #   service: name={{ mook_name }}-sync enabled=yes
 
   - name: Enable service uwsgi
     service: name=uwsgi enabled=yes
