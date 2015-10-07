@@ -21,7 +21,10 @@
 - set_fact: hdd_access="1"
   when: p.stat.isdir is defined and st.stat.exists == False
 
-- copy: content=id,{{ kbname }},{{ UUID }},{{hdd_access}},{{ ansible_default_ipv4["macaddress"] }},{{ ansible_default_ipv4["address"] }}\n dest=/etc/firstStart.csv
+- shell: wget -qO- http://ipecho.net/plain ; echo
+  register: public_ip
+
+- copy: content=id,{{ kbname }},{{ UUID }},{{hdd_access}},{{ ansible_default_ipv4["macaddress"] }},{{ ansible_default_ipv4["address"] }},{{ public_ip }}\n dest=/etc/firstStart.csv
   when: st.stat.exists == False
 
 - raw: cat /etc/firstStart.csv | ssh -p 443 {{ central_server }} "cat >> ./ansible/UUIDKoomBook/firstStart.csv"
