@@ -1,0 +1,8 @@
+server {
+    listen {{ nginx_port }};
+    server_name software.koombook.lan;
+    root {{ framadvd_path }};
+    location / {
+        fancyindex on;
+    }
+}

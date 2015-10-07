@@ -4,6 +4,9 @@ central_server: ansible@37.187.151.52
 filer_bsf: http://filer.bsf-intranet.org
 kiwix_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
 gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
+appinventor_path: /home/{{username}}/Ai2LiveComplete/
+framadvd_path: /media/hdd/framadvd/
+
 
 #Network
 hostname: koombook.lan
@@ -25,6 +28,8 @@ kalite_server_name: kalite.{{hostname}}
 gutemberg_server_name: gutemberg.{{hostname}}
 mook_front_server_name: bsfcampus.{{ hostname }}
 mook_api_server_name: api.{{ mook_name }}.{{ hostname }}
+appinventor_server_name: appinventor.{{hostname}}
+framadvd_server_name: framadvd.{{hostname}}
 nginx_remove_default_vhost: true
 timezone: Europe/Paris
 
