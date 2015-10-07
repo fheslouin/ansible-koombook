@@ -37,13 +37,13 @@
     - name: Copy vimrc for root
       copy: src=vim dest=/etc/vim/vimrc owner=root
 
-    # - name: Add hdparm to save energy
-    #   lineinfile: dest=/etc/hdparm.conf
-    #               regexp=''
-    #               insertafter=EOF
-    #               line='/dev/sda {
-    #                       spindown_time = 280
-    #               }'
+    - name: Add hdparm to save energy
+      lineinfile: dest=/etc/hdparm.conf
+                  regexp=''
+                  insertafter=EOF
+                  line='/dev/sda {
+                          spindown_time = 280
+                  }'
 
     - name: Copy fex.file
       template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex
@@ -55,9 +55,6 @@
 
     - name: Copy visudo file
       template: src=visudo.j2 dest=/etc/sudoers.d/shutdown owner=root group=root mode=0440
-
-    # - name: Copy known_hosts file
-    #   copy: src=known_hosts dest=/root/.ssh/known_hosts owner=root
 
     - hostname: name={{ hostname }}
 
