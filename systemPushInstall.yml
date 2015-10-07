@@ -1,8 +1,7 @@
 ---
 - hosts: koombook
   roles:
-     - system
-     - firstStart
+     # - firstStart
      - nginx
      - dnsmasq
      - hostapd

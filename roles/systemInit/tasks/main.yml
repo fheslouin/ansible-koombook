@@ -2,9 +2,15 @@
     - name: Update packages list
       apt: update_cache=yes cache_valid_time=3600
 
-    - name: Install more package
+    - name: Install requiered package
       apt: name={{ item }} state=latest
       with_items:
+       - python-pip
+       - python-dev
+       - python-setuptools
+       - git
+       - sudo
+       - vim
        - lsb-release
        - vim
        - locate
@@ -13,23 +19,17 @@
        - python-pip
        - bash-completion
        - aptitude
+       - sslh
 
-    - stat: path=/etc/firstStart.csv
-      register: st
-
-    - name: Install sslh
-      apt: name=sslh
-
-    - name: Copy SSHL config file
-      copy: src=sslh dest=/etc/default/sslh owner=root group=root mode=0644 backup=yes
-      notify: update sslh
+    - name: Installe ansible
+      pip: name=ansible
 
     - name: Upgrade packages
       apt: upgrade=safe
 
-    - name: Add user KoomBook
-      user: name={{username}}
-      when: st.stat.exists == False
+    - name: Copy SSHL config file
+      copy: src=sslh dest=/etc/default/sslh owner=root group=root mode=0644 backup=yes
+      notify: update sslh
 
     - name: Copy .bashrc for root
       copy: src=bashrc dest=/root/.bashrc owner=root
@@ -44,6 +44,17 @@
                   line='/dev/sda {
                           spindown_time = 280
                   }'
+
+    - name: Copy fex.file
+      template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and st.stat.exists == False
+
+    - name: Build binary from fex
+      shell: /usr/local/bin/fex2bin lime2.fex > lime2.bin chdir=/boot/bin/
+      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and st.stat.exists == False
+
+    - name: Copy visudo file
+      template: src=visudo.j2 dest=/etc/sudoers.d/shutdown owner=root group=root mode=0440
 
     # - name: Copy known_hosts file
     #   copy: src=known_hosts dest=/root/.ssh/known_hosts owner=root
@@ -62,24 +73,8 @@
       apt:  deb=/tmp/linuxUboot.deb
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
-    - name: List services to restart (1/2)
-      shell: checkrestart | grep ^service | awk '{print $2}'
-      register: services
-      changed_when: False
-
     - stat: path=/boot/bin/lime2.fex
       register: st
-
-    - name: Copy fex.file
-      template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex
-      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and st.stat.exists == False
-
-    - name: Build binary from fex
-      shell: /usr/local/bin/fex2bin lime2.fex > lime2.bin chdir=/boot/bin/
-      when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and st.stat.exists == False
-
-    - name: Copy visudo file
-      template: src=visudo.j2 dest=/etc/sudoers.d/shutdown owner=root group=root mode=0440
 
     - file: path=/media/hdd state=directory
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
@@ -88,5 +83,25 @@
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"   
       ignore_errors: yes
 
+    - name: Create local directory to work from
+      file: path={{workdir}} state=directory owner=root group=root mode=0751
+
+    - name: Create ansible hosts directory to work from
+      file: path=/etc/ansible/ state=directory owner=root group=root mode=0751
+
+    - name: Copy ansible inventory file to client
+      copy: src=hosts dest=/etc/ansible/hosts
+              owner=root group=root mode=0644
+
+    - name: Create entry to clone/pull git repository
+      template: src=templates/dhclient-exit-hooks.j2 dest=/etc/dhcp/dhclient-exit-hooks.d/systemPullUpdate owner=root group=root mode=0755
+
+    - name: List services to restart (1/2)
+      shell: checkrestart | grep ^service | awk '{print $2}'
+      register: services
+      changed_when: False
+
     - tasks:
-      include: ../../../installed_software.yml task=system
+      include: ../../../installed_software.yml task={{hotspot_name}}Init
+
+    - command: /sbin/shutdown -h now

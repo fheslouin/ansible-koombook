@@ -1,0 +1,5 @@
+---
+- hosts: koombook
+  roles:
+   - systemInit
+  #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }

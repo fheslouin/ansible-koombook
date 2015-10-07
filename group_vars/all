@@ -32,10 +32,16 @@ appinventor_server_name: appinventor.{{hostname}}
 framadvd_server_name: framadvd.{{hostname}}
 nginx_remove_default_vhost: true
 timezone: Europe/Paris
+# File that ansible will use for logs
+logfile: /var/log/ansible-pull.log
+# Directory to where repository will be cloned
+workdir: /var/lib/ansible/local
+repo_url: https://github.com/fheslouin/ansible-koombook.git
 
 #Hardware battery
 battery_capacity: 7800
-charging_current: 700
+charging_current: 1000
 power_on_button_delay: 500
 power_off_button_delay: 8000
 enable_power_button_power_off: 1
+
