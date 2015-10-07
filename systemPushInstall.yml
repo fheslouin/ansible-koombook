@@ -3,15 +3,15 @@
 - hosts: koombook
   roles:
      # - firstStart
-     - nginx
-     - dnsmasq
-     - hostapd
-     - iptables
-     - wikipedia
-     #- kalite
-     - monitoring
-     - ideasbox
-     - gutemberg
-     - appinventor
-     - mook
-     - mongodb
+     # - nginx
+     # - dnsmasq
+     # - hostapd
+     # - iptables
+     # - wikipedia
+     # #- kalite
+     # - monitoring
+     # - ideasbox
+     # - gutemberg
+     # - appinventor
+     # - mook
+     # - mongodb

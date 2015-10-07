@@ -3,17 +3,17 @@
 - hosts: localhost
   roles:
        - firstStart
-      # - nginx
-      # - dnsmasq
-      # - hostapd
-      # - iptables
-      # - wikipedia
+       - nginx
+       - dnsmasq
+       - hostapd
+       - iptables
+       - wikipedia
       # #- kalite
-      # - monitoring
-      # - ideasbox
-      # - gutemberg
+       - monitoring
+       - ideasbox
+       - gutemberg
        - logs
-      # - appinventor
+       - appinventor
        - mook
        - mongodb
     # Play a role for a specific device
