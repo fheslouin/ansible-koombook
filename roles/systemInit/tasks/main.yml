@@ -47,6 +47,8 @@
                           spindown_time = 280
                   }'
 
+    - locale_gen: name=fr_FR.UTF-8 state=present
+
     - name: Copy fex.file
       template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
