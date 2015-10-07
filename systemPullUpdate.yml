@@ -7,14 +7,14 @@
       - dnsmasq
       - hostapd
       - iptables
-      - kiwix
+      - wikipedia
       #- kalite
       - monitoring
       - ideasbox
       - gutemberg
       - appinventor
-      - bsfcampus
+      - mook
       - mongodb
     # Play a role for a specific device
-    #- { role: bsfcampus, when: ansible_hostname == 'KoomBook918' }
+    #- { role: mook, when: ansible_hostname == 'KoomBook918' }
     #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }

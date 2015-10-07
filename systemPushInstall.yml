@@ -6,11 +6,11 @@
      - dnsmasq
      - hostapd
      - iptables
-     - kiwix
+     - wikipedia
      #- kalite
      - monitoring
      - ideasbox
      - gutemberg
      - appinventor
-     - bsfcampus
+     - mook
      - mongodb
