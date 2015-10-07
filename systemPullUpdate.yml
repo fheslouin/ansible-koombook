@@ -1,5 +1,5 @@
 ---
-#It will always be localhost
+#It will be always localhost
 - hosts: localhost
   roles:
       - firstStart
