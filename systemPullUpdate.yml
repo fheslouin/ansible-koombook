@@ -2,16 +2,16 @@
 #It will be always localhost
 - hosts: localhost
   roles:
-      - firstStart
-      - nginx
-      - dnsmasq
-      - hostapd
-      - iptables
-      - wikipedia
-      #- kalite
-      - monitoring
-      - ideasbox
-      - gutemberg
+      # - firstStart
+      # - nginx
+      # - dnsmasq
+      # - hostapd
+      # - iptables
+      # - wikipedia
+      # #- kalite
+      # - monitoring
+      # - ideasbox
+      # - gutemberg
       - appinventor
       - mook
       - mongodb
