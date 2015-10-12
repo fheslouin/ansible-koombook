@@ -6,8 +6,8 @@
        # - nginx
        # - dnsmasq
        # - hostapd
-       - iptables
-       - wikipedia
+       # - iptables
+       # - wikipedia
        - cpassorcier
        - framadvd
        - tedvideos

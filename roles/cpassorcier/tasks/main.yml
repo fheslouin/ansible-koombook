@@ -3,7 +3,7 @@
       get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
 
     - name: Setup startup file
-      template: src=kiwix.j2 dest=/etc/init.d/cpassorcier owner=root group=root mode=755
+      template: src=cpassorcier.j2 dest=/etc/init.d/cpassorcier owner=root group=root mode=755
 
     - name: Enable service cpassorcier
       service: name=cpassorcier enabled=yes
