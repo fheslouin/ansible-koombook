@@ -56,8 +56,8 @@
   - name: Create log dir for uwsgi
     file: path=/var/log/uwsgi state=directory owner=www-data group=www-data mode=0751
 
-  - name: Symbolic link for wsgi
-    file: src={{ mook_path }}{{ mook_name }}/api/mook_local.wsgi dest={{ mook_path }}{{ mook_name }}/api/mook_local.py state=link
+  #- name: Symbolic link for wsgi
+  #  file: src={{ mook_path }}{{ mook_name }}/api/mook_local.wsgi dest={{ mook_path }}{{ mook_name }}/api/mook_local.py state=link
 
 ####
 # NGINX CONFIGURATION

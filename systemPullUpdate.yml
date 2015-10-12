@@ -8,18 +8,18 @@
        # - hostapd
        # - iptables
        # - wikipedia
-       - cpassorcier
-       - framadvd
-       - tedvideos
-       - ubuntudoc
-       - vikipedia
-       - wikisource
-      #- kalite
-       - monitoring
-       - ideasbox
-       - gutemberg
-       - logs
-       - appinventor
+      #  - cpassorcier
+      #  - framadvd
+      #  - tedvideos
+      #  - ubuntudoc
+      #  - vikipedia
+      #  - wikisource
+      # #- kalite
+      #  - monitoring
+      #  - ideasbox
+      #  - gutemberg
+      #  - logs
+      #  - appinventor
        - mook
        - mongodb
     # Play a role for a specific device
