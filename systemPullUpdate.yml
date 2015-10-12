@@ -20,8 +20,8 @@
       #  - gutemberg
       #  - logs
       #  - appinventor
-       - mook
-       - mongodb
+       # - mook
+       # - mongodb
     # Play a role for a specific device
     #- { role: mook, when: ansible_hostname == 'KoomBook918' }
     #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }
