@@ -41,4 +41,4 @@
     when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
   - tasks:
-    include: ../../../installed_software.yml task=mongodb
+    include: ../../../post_tasks.yml task=mongodb

@@ -66,6 +66,7 @@
       copy: content={{ timezone }} dest=/etc/timezone owner=root group=root mode=0644 backup=yes
       notify: update timezone
 
+      # Restreindre l'application du patch que au Lime2
     - name: Copy patch U-Boot package
       get_url: url={{filer_bsf}}/linux-u-boot-lime2_4.3_armhf.deb dest=/tmp/linuxUboot.deb owner=root group=root mode=755
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
@@ -100,6 +101,6 @@
       changed_when: False
 
     - tasks:
-      include: ../../../installed_software.yml task={{hotspot_name}}Init
+      include: ../../../post_tasks.yml task={{hotspot_name}}Init
 
     - command: /sbin/shutdown -h now

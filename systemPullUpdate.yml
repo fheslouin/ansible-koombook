@@ -2,20 +2,20 @@
 #It will be always localhost
 - hosts: localhost
   roles:
-       - firstStart
-       - nginx
-       - dnsmasq
-       - hostapd
-       - iptables
-       - wikipedia
-      # #- kalite
-       - monitoring
-       - ideasbox
-       - gutemberg
-       - logs
-       - appinventor
-       - mook
-       - mongodb
+      #  - firstStart
+      #  - nginx
+      #  - dnsmasq
+      #  - hostapd
+      #  - iptables
+      #  - wikipedia
+      # # #- kalite
+      #  - monitoring
+      #  - ideasbox
+      #  - gutemberg
+      #  - logs
+      #  - appinventor
+      #  - mook
+      #  - mongodb
     # Play a role for a specific device
     #- { role: mook, when: ansible_hostname == 'KoomBook918' }
     #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }

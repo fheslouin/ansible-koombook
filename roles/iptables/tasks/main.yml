@@ -25,4 +25,4 @@
       when: iptables.changed
 
     - tasks:
-      include: ../../../installed_software.yml task=iptables
+      include: ../../../post_tasks.yml task=iptables

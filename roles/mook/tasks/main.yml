@@ -96,9 +96,9 @@
 
   - name: add a new string before the match
     lineinfile: dest=/etc/rc.local
-                regexp='^exit'
-                insertbefore='^exit'
-                line='su koombook -c \'{{ mook_path }}{{ mook_name }}/api/env/bin/python2.7 {{ mook_path }}{{ mook_name }}/api/manage.py sync -D\' > /dev/null 2>&1'
+                regexp='^By'
+                insertbefore='^# By'
+                line="su koombook -c \'{{ mook_path }}{{ mook_name }}/api/env/bin/python2.7 {{ mook_path }}{{ mook_name }}/api/manage.py sync -D\' > /dev/null 2>&1"
 
   # - name: Enable service sync daemon
   #   service: name={{ mook_name }}-sync enabled=yes
@@ -122,4 +122,4 @@
     template: src=config.js.j2 dest={{ mook_path }}{{ mook_name }}/front/config.js
 
   - tasks:
-    include: ../../../installed_software.yml task=mook
+    include: ../../../post_tasks.yml task=mook version=1

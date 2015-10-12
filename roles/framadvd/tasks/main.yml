@@ -15,4 +15,4 @@
       notify: restart nginx
 
     - tasks:
-      include: ../../../installed_software.yml task=framadvd
+      include: ../../../post_tasks.yml task=framadvd
