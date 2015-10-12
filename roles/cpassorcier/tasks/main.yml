@@ -1,0 +1,21 @@
+---
+    - name: Copying kiwix binary
+      get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
+
+    - name: Setup startup file
+      template: src=kiwix.j2 dest=/etc/init.d/cpassorcier owner=root group=root mode=755
+
+    - name: Enable service cpassorcier
+      service: name=cpassorcier enabled=yes
+
+    - name: Copy nginx vhost
+      template: src=nginx.vhost.j2 dest=/etc/nginx/sites-available/cpassorcier
+      register: vhost
+
+    - name: Nginx enable Virtual host
+      file: src=/etc/nginx/sites-available/cpassorcier dest=/etc/nginx/sites-enabled/cpassorcier state=link
+      when: vhost.changed
+      notify: restart nginx
+
+    - tasks:
+      include: ../../../post_tasks.yml task=cpassorcier version=1

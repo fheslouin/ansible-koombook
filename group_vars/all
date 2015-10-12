@@ -6,7 +6,11 @@ kiwix_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
 gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
 appinventor_path: /home/{{username}}/Ai2LiveComplete/
 framadvd_path: /media/hdd/framadvd/
-
+cpassorcier_path: /media/hdd/cest-pas-sorcier/cest-pas-sorcier_fr_all_2015-07.zim
+ted_path: /media/hdd/TEDvideos/
+vikipedia_path: /media/hdd/vikipedia/vikidia_fr_all_2015-10.zim
+wikisource_path: /media/hdd/wikisource/
+ubuntudoc_path: /media/hdd/ubuntudoc_fr_2009-01.zim
 
 #Network
 hostname: koombook.lan
@@ -23,13 +27,6 @@ mook_path: /home/
 #System
 username: koombook
 nginx_port: 80
-wikipedia_server_name: wikipedia.{{hostname}}
-kalite_server_name: kalite.{{hostname}}
-gutemberg_server_name: gutemberg.{{hostname}}
-mook_front_server_name: bsfcampus.{{ hostname }}
-mook_api_server_name: api.{{ mook_name }}.{{ hostname }}
-appinventor_server_name: appinventor.{{hostname}}
-framadvd_server_name: framadvd.{{hostname}}
 nginx_remove_default_vhost: true
 timezone: Europe/Paris
 # File that ansible will use for logs
@@ -37,6 +34,20 @@ logfile: /var/log/ansible-pull.log
 # Directory to where repository will be cloned
 workdir: /var/lib/ansible/local
 repo_url: https://github.com/fheslouin/ansible-koombook.git
+
+#Domaine name 
+wikipedia_server_name: wikipedia.{{hostname}}
+kalite_server_name: kalite.{{hostname}}
+gutemberg_server_name: gutemberg.{{hostname}}
+mook_front_server_name: bsfcampus.{{ hostname }}
+mook_api_server_name: api.{{ mook_name }}.{{ hostname }}
+appinventor_server_name: appinventor.{{hostname}}
+framadvd_server_name: framadvd.{{hostname}}
+cpassorcier_server_name: cpassorcier.{{hostname}}
+vikipedia_server_name: vikipedia.{{hostname}}
+ted_server_name: ted.{{hostname}}
+wikisource_server_name: wikisource.{{hostname}}
+ubuntudoc_server_name: ubuntudoc.{{hostname}}
 
 #Hardware battery
 battery_capacity: 7800

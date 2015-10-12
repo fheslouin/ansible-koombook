@@ -18,4 +18,4 @@
       notify: restart nginx
 
     - tasks:
-      include: ../../../post_tasks.yml task=gutemberg
+      include: ../../../post_tasks.yml task=gutemberg version=1

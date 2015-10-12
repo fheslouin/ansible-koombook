@@ -1,0 +1,21 @@
+---
+    - name: Copying kiwix binary
+      get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
+
+    - name: Setup startup file
+      template: src=vikipedia.j2 dest=/etc/init.d/vikipedia owner=root group=root mode=755
+
+    - name: Enable service vikipedia
+      service: name=vikipedia enabled=yes
+
+    - name: Copy nginx vhost
+      template: src=nginx.vhost.j2 dest=/etc/nginx/sites-available/vikipedia
+      register: vhost
+
+    - name: Nginx enable Virtual host
+      file: src=/etc/nginx/sites-available/vikipedia dest=/etc/nginx/sites-enabled/vikipedia state=link
+      when: vhost.changed
+      notify: restart nginx
+
+    - tasks:
+      include: ../../../post_tasks.yml task=vikipedia version=1

@@ -23,4 +23,4 @@
       notify: restart nginx
 
     - tasks:
-      include: ../../../post_tasks.yml task=nginx
+      include: ../../../post_tasks.yml task=nginx version=1

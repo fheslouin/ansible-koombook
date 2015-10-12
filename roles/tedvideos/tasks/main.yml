@@ -1,0 +1,21 @@
+---
+    - name: Copying kiwix binary
+      get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
+
+    - name: Setup startup file
+      template: src=ted.j2 dest=/etc/init.d/ted owner=root group=root mode=755
+
+    - name: Enable service kiwix
+      service: name=ted enabled=yes
+
+    - name: Copy nginx vhost
+      template: src=nginx.vhost.j2 dest=/etc/nginx/sites-available/ted
+      register: vhost
+
+    - name: Nginx enable Virtual host
+      file: src=/etc/nginx/sites-available/ted dest=/etc/nginx/sites-enabled/ted state=link
+      when: vhost.changed
+      notify: restart nginx
+
+    - tasks:
+      include: ../../../post_tasks.yml task=ted version=1

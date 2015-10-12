@@ -1,0 +1,21 @@
+---
+    - name: Copying kiwix binary
+      get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
+
+    - name: Setup startup file
+      template: src=wikisource.j2 dest=/etc/init.d/wikisource owner=root group=root mode=755
+
+    - name: Enable service wikisource
+      service: name=wikisource enabled=yes
+
+    - name: Copy nginx vhost
+      template: src=nginx.vhost.j2 dest=/etc/nginx/sites-available/wikisource
+      register: vhost
+
+    - name: Nginx enable Virtual host
+      file: src=/etc/nginx/sites-available/wikisource dest=/etc/nginx/sites-enabled/wikisource state=link
+      when: vhost.changed
+      notify: restart nginx
+
+    - tasks:
+      include: ../../../post_tasks.yml task=wikisource version=1

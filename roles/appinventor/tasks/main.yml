@@ -28,4 +28,4 @@
       service: name=appinventor enabled=yes
 
     - tasks:
-      include: ../../../post_tasks.yml task=appinventor
+      include: ../../../post_tasks.yml task=appinventor version=070915

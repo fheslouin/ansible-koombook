@@ -101,6 +101,6 @@
       changed_when: False
 
     - tasks:
-      include: ../../../post_tasks.yml task={{hotspot_name}}Init
+      include: ../../../post_tasks.yml task={{hotspot_name}}Init version=1
 
     - command: /sbin/shutdown -h now
