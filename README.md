@@ -42,4 +42,4 @@ In this case all the machines below ```[koombook]``` will be updated
 At this stage, you have Ansible installed and ready, you cloned the Git repo, you wrote the hosts file to designate the slaves and your machine (master) is able to connect automaticly to the KoomBook throught SSH with your public key.
 
 ## First initialisation 
-The first initialisation called with the role ``systemInit``` has been written to get an update system, with most essential package and basic config. It also patch the U-Boot Olimex A20 to disable some ennoying default beahaviour. 
+The first initialisation called with the role ```systemInit``` has been written to get an update system, with most essential package and basic config. It also patch the U-Boot Olimex A20 to disable some ennoying default beahaviour. 

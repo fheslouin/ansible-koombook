@@ -6,7 +6,7 @@
         - nginx
         - dnsmasq
         - hostapd
-        - iptables
+        #- iptables
         - wikipedia
         - cpassorcier
         - framadvd
@@ -14,14 +14,14 @@
         - ubuntudoc
         - vikipedia
         - wikisource
-      # #- kalite
+        - kalite
         - monitoring
         #- ideasbox
         - gutemberg
         - logs
-        - appinventor
-        - mook
-        - mongodb
+        #- appinventor
+        #- mook
+        #- mongodb
     # Play a role for a specific device
     #- { role: mook, when: ansible_hostname == 'KoomBook918' }
     #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }
