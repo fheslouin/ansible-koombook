@@ -3,21 +3,21 @@
 - hosts: localhost
   roles:
         # - firstStart
-        # - nginx
+         - nginx
         # - dnsmasq
         # - hostapd
         # #- iptables
-        # - wikipedia
-        # - cpassorcier
-        # - framadvd
-        # - tedvideos
-        # - ubuntudoc
-        # - vikipedia
-        # - wikisource
+         - wikipedia
+         - cpassorcier
+         - framadvd
+         - tedvideos
+         - ubuntudoc
+         - vikipedia
+         - wikisource
         # #- kalite
         # - monitoring
         # #- ideasbox
-        # - gutemberg
+         - gutemberg
         # - logs
         # #- appinventor
         # #- mook
