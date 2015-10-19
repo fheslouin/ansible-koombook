@@ -3,8 +3,8 @@
 - hosts: localhost
   roles:
     # Has to be always enable 
-    # - firstStart
-    # - logs
+    - firstStart
+    - logs
     # # Can be anable/disable on demand but affect all devices
     # - nginx
     # - dnsmasq
@@ -19,7 +19,7 @@
     # - wikisource
     # # - kalite
     # # - monitoring
-    # # - ideasbox
+    - ideasbox
     # # - gutemberg
     # - appinventor
     # - mook
