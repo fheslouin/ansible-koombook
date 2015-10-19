@@ -9,7 +9,7 @@
        - apache2.2-common
 
     - name: Installs nginx web server
-      apt: pkg=nginx-full state=installed update_cache=true
+      apt: pkg=nginx state=installed update_cache=true
 
     - name: Remove default nginx vhost config file (if configured).
       file:

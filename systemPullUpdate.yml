@@ -2,22 +2,22 @@
 #It will be always localhost
 - hosts: localhost
   roles:
-        # - firstStart
-         - nginx
-        # - dnsmasq
-        # - hostapd
-        # #- iptables
-         - wikipedia
-         - cpassorcier
-         - framadvd
-         - tedvideos
-         - ubuntudoc
-         - vikipedia
-         - wikisource
-        # #- kalite
-        # - monitoring
-        # #- ideasbox
-         - gutemberg
+        - firstStart
+        #  - nginx
+        # # - dnsmasq
+        # # - hostapd
+        # # #- iptables
+        #  - wikipedia
+        #  - cpassorcier
+        #  - framadvd
+        #  - tedvideos
+        #  - ubuntudoc
+        #  - vikipedia
+        #  - wikisource
+        # # #- kalite
+        # # - monitoring
+        # # #- ideasbox
+        #  - gutemberg
         # - logs
         # #- appinventor
         # #- mook

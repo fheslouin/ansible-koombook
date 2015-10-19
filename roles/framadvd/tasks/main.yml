@@ -1,6 +1,6 @@
 ---
-    # - name: Installs nginx extra
-    #   apt: pkg=nginx-extras state=installed update_cache=true
+    - name: Installs nginx extra
+      apt: pkg=nginx-extras state=installed update_cache=true
 
     - name: Copy nginx vhost
       template: src=vhost.j2 dest=/etc/nginx/sites-available/framadvd
