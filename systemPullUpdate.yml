@@ -6,22 +6,22 @@
     - firstStart
     - logs
     # Can be anable/disable on demand but affect all devices
-     - nginx
-     - dnsmasq
-     - hostapd
-     - iptables
-     - wikipedia
-     - cpassorcier
+    - nginx
+    - dnsmasq
+    - hostapd
+    - iptables
+    - wikipedia
+    - cpassorcier
     # - framadvd
-     - tedvideos
+    - tedvideos
     # - ubuntudoc
-     - vikipedia
-     - wikisource
+    - vikipedia
+    - wikisource
     # - kalite
     # - monitoring
     # - ideasbox
     # - gutemberg
-     - appinventor
+    - appinventor
     # - mook
     # - mongodb
     # Play a role for a specific device
