@@ -25,4 +25,4 @@
     # - mook
     # - mongodb
     # Play a role for a specific device
-    #- { role: nginx,dnsmasq,hostapd,iptables,wikipedia,vikipedia,wikisource,ideasbox,appinventor when: ansible_hostname == 'KoomBook918' }
+    - { role: nginx,dnsmasq,hostapd,iptables,wikipedia,vikipedia,wikisource,ideasbox,appinventor when: ansible_hostname == 'KoomBook603' }
