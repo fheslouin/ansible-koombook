@@ -8,7 +8,7 @@ appinventor_path: /home/{{username}}/Ai2LiveComplete/
 framadvd_path: /media/hdd/framadvd/
 cpassorcier_zim_path: /media/hdd/cest-pas-sorcier/cest-pas-sorcier_fr_all_2015-07.zim
 ted_zim_path: /media/hdd/TEDvideos/
-vikipedia_zim_path: /media/hdd/vikipedia/vikidia_fr_all_2015-10.zim
+vikidia_zim_path: /media/hdd/vikipedia/vikidia_fr_all_2015-10.zim
 wikisource_zim_path: /media/hdd/wikisource/
 ubuntudoc_zim_path: /media/hdd/ubuntudoc_fr_2009-01.zim
 
@@ -44,7 +44,7 @@ mook_api_server_name: api.{{ mook_name }}.{{ hostname }}
 appinventor_server_name: appinventor.{{hostname}}
 framadvd_server_name: framadvd.{{hostname}}
 cpassorcier_server_name: cpassorcier.{{hostname}}
-vikipedia_server_name: vikipedia.{{hostname}}
+vikidia_server_name: vikidia.{{hostname}}
 ted_server_name: ted.{{hostname}}
 wikisource_server_name: wikisource.{{hostname}}
 ubuntudoc_server_name: ubuntudoc.{{hostname}}

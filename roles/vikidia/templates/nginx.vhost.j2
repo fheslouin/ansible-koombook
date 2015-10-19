@@ -1,7 +1,7 @@
 server {
     listen  {{ nginx_port }};
-    server_name {{ vikipedia_server_name }};
-    root {{ vikipedia_zim_path }};
+    server_name {{ vikidia_server_name }};
+    root {{ vikidia_zim_path }};
     location / {
         proxy_pass_header Server;
         proxy_set_header Host $http_host;

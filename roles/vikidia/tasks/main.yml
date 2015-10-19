@@ -1,0 +1,21 @@
+---
+    - name: Copying kiwix binary
+      get_url: url={{filer_bsf}}/kiwix-serve dest=/usr/local/bin/kiwix-serve mode=755
+
+    - name: Setup startup file
+      template: src=vikidia.j2 dest=/etc/init.d/vikidia owner=root group=root mode=755
+
+    - name: Enable service vikidia
+      service: name=vikidia enabled=yes
+
+    - name: Copy nginx vhost
+      template: src=nginx.vhost.j2 dest=/etc/nginx/sites-available/vikidia
+      register: vhost
+
+    - name: Nginx enable Virtual host
+      file: src=/etc/nginx/sites-available/vikidia dest=/etc/nginx/sites-enabled/vikidia state=link
+      when: vhost.changed
+      notify: restart nginx
+
+    - tasks:
+      include: ../../../post_tasks.yml task=vikidia version=1

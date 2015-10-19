@@ -1,12 +1,12 @@
 #! /bin/sh
 ### BEGIN INIT INFO
-# Provides:          vikipedia-serve
+# Provides:          vikidia-serve
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: start vikipedia  server
-# Description:       vikipedia server daemon
+# Short-Description: start vikidia  server
+# Description:       vikidia server daemon
 ### END INIT INFO
 
 # Author: Yohan Boniface <hi@yohanboniface.me>
@@ -14,14 +14,14 @@
 # Do NOT "set -e"
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
-DESC="vikipedia serve"
-NAME=vikipedia
+DESC="vikidia serve"
+NAME=vikidia
 DAEMON=/usr/local/bin/kiwix-serve
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 PORT=8013
 # Fix the path with the right ZIM file
-DATAPATH={{vikipedia_zim_path}}
+DATAPATH={{vikidia_zim_path}}
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
