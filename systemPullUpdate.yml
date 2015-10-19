@@ -3,25 +3,25 @@
 - hosts: localhost
   roles:
     # Has to be always enable 
-    - firstStart
-    - logs
-    # Can be anable/disable on demand but affect all devices
-    - nginx
-    - dnsmasq
-    - hostapd
-    - iptables
-    - wikipedia
-    - cpassorcier
-    # - framadvd
-    - tedvideos
-    # - ubuntudoc
-    - vikipedia
-    - wikisource
-    # - kalite
-    # - monitoring
-    # - ideasbox
-    # - gutemberg
-    - appinventor
+    # - firstStart
+    # - logs
+    # # Can be anable/disable on demand but affect all devices
+    # - nginx
+    # - dnsmasq
+    # - hostapd
+    # - iptables
+    # - wikipedia
+    # - cpassorcier
+    # # - framadvd
+    # - tedvideos
+    # # - ubuntudoc
+    # - vikipedia
+    # - wikisource
+    # # - kalite
+    # # - monitoring
+    # # - ideasbox
+    # # - gutemberg
+    # - appinventor
     # - mook
     # - mongodb
     # Play a role for a specific device
