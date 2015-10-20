@@ -25,4 +25,4 @@
     # - mook
     # - mongodb
     # Play a role for a specific device
-    #- { role: nginx when: ansible_hostname == 'KoomBook603' }
+    - { role: iptables when: ansible_hostname == 'KoomBook484' }

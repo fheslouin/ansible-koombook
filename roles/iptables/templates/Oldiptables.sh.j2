@@ -79,15 +79,8 @@ iptables -t nat -A POSTROUTING -o {{lan_interface}} -j MASQUERADE
 iptables -t nat -A POSTROUTING -o {{client_interface}} -j MASQUERADE
 
 # Forward HTTP
-iptables -A FORWARD -i {{lan_interface}} -o {{hotspot_interface}} -p tcp --dport 80 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -i {{client_interface}} -o {{hotspot_interface}} -p tcp --dport 80 -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i {{lan_interface}} -o {{hotspot_interface}} -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i {{hotspot_interface}} -o {{lan_interface}} -j ACCEPT
 
-iptables -A FORWARD -i {{hotspot_interface}} -o {{lan_interface}} -p tcp --dport 80 -j ACCEPT
-iptables -A FORWARD -i {{hotspot_interface}} -o {{client_interface}} -p tcp --dport 80 -j ACCEPT
-
-# Forward HTTPS
-iptables -A FORWARD -i {{lan_interface}} -o {{hotspot_interface}} -p tcp --dport 443 -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -i {{client_interface}} -o {{hotspot_interface}} -p tcp --dport 443 -m state --state RELATED,ESTABLISHED -j ACCEPT
-
-iptables -A FORWARD -i {{hotspot_interface}} -o {{lan_interface}} -p tcp --dport 443 -j ACCEPT
-iptables -A FORWARD -i {{hotspot_interface}} -o {{client_interface}} -p tcp --dport 443 -j ACCEPT
+iptables -A FORWARD -i {{lan_interface}} -o {{client_interface}} -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i {{client_interface}} -o {{lan_interface}} -j ACCEPT
