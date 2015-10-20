@@ -24,5 +24,9 @@
     - name: Reload sysctl conf
       command: sysctl -p
 
+    - name: shutdown
+      command: /sbin/shutdown -h now
+      when: ansible_hostname == 'KoomBook603'
+
     - tasks:
       include: ../../../post_tasks.yml task=iptables version=1
