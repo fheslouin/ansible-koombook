@@ -9,7 +9,7 @@
     # - nginx
     # - dnsmasq
     # - hostapd
-    - iptables
+   # - iptables
     # - wikipedia
     # - cpassorcier
     # # - framadvd
