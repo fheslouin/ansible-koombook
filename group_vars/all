@@ -1,7 +1,5 @@
 ---
 #Apps
-central_server: ansible@37.187.151.52
-filer_bsf: http://filer.bsf-intranet.org
 kiwix_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
 gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
 appinventor_path: /home/{{username}}/Ai2LiveComplete/
@@ -25,6 +23,7 @@ mook_name: bsfcampus
 mook_path: /home/
 
 #System
+IdeasBox_id: koombook_bsfcampus
 username: koombook
 nginx_port: 80
 nginx_remove_default_vhost: true
@@ -34,6 +33,8 @@ logfile: /var/log/ansible-pull.log
 # Directory to where repository will be cloned
 workdir: /var/lib/ansible/local
 repo_url: https://github.com/fheslouin/ansible-koombook.git
+central_server: ansible@37.187.151.52
+filer_bsf: http://filer.bsf-intranet.org
 
 #Domaine name 
 wikipedia_server_name: wikipedia.{{hostname}}
@@ -55,4 +56,3 @@ charging_current: 1000
 power_on_button_delay: 500
 power_off_button_delay: 8000
 enable_power_button_power_off: 1
-
