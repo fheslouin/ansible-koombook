@@ -9,6 +9,12 @@
   register: st
   when: ansible_architecture == 'x86_64'
 
+- name: Add IDEASBOX_ID
+  lineinfile: dest=/etc/default/ideasbox
+              regexp='^'
+              line='IDEASBOX_ID=koombook_bsfcampus'
+              state=present
+
 - name: Copy ideasbox package
   get_url: url={{filer_bsf}}/ideasbox_0.3.3-1_armhf.deb dest=/tmp/ideasbox_0.3.3-1_armhf.deb owner=root group=root mode=755
   when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
