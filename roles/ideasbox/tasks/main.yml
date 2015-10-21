@@ -1,38 +1,38 @@
 ---
 # For ARM
-- name: Check if package exist
-  stat: path=/tmp/ideasbox_0.3.3-1_armhf.deb
-  register: st
-  when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
+# - name: Check if package exist
+#   stat: path=/tmp/ideasbox_0.3.3-1_armhf.deb
+#   register: st
+#   when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
 - name: Copy ideasbox package
   get_url: url={{filer_bsf}}/ideasbox_0.3.3-1_armhf.deb dest=/tmp/ideasbox_0.3.3-1_armhf.deb owner=root group=root mode=755
-  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and st.stat.exists == 'true'
+  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
 - name: install ideasbox package
   apt: deb=/tmp/ideasbox_0.3.3-1_armhf.deb
-  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l" and st.stat.exists == 'true'
+  when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"
 
 - name: Add IDEASBOX_ID
   lineinfile: dest=/etc/default/ideasbox
               regexp='^'
               line='IDEASBOX_ID={{ IdeasBox_id }}'
               state=present
-  when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l' and st.stat.exists == 'true'
+  when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
 # For AMD64
-- name: Check if package exist
-  stat: path=/tmp/ideasbox_0.3.2-1_amd64.deb
-  register: st
-  when: ansible_architecture == 'x86_64'
+# - name: Check if package exist
+#   stat: path=/tmp/ideasbox_0.3.2-1_amd64.deb
+#   register: st
+#   when: ansible_architecture == 'x86_64'
 
 - name: Copy ideasbox package
   get_url: url={{filer_bsf}}/ideasbox_0.3.2-1_amd64.deb dest=/tmp/ideasbox_0.3.2-1_amd64.deb owner=root group=root mode=755
-  when: ansible_architecture == 'x86_64' and st.stat.exists == 'false'
+  when: ansible_architecture == 'x86_64'
 
 - name: install ideasbox package
   apt: deb=/tmp/ideasbox_0.3.2-1_amd64.deb
-  when: ansible_architecture == 'x86_64' and st.stat.exists == 'false'
+  when: ansible_architecture == 'x86_64'
 
 - tasks:
   include: ../../../post_tasks.yml task=ideasbox version=0.3.3.1
