@@ -9,28 +9,28 @@
       timezone: "Africa/Dakar"
       IdeasServer_id: BsfCampus
 
-    - nginx
-    - dnsmasq
-    - hostapd
-    - iptables
-    - monitoring
+    # - nginx
+    # - dnsmasq
+    # - hostapd
+    # - iptables
+    # - monitoring
 
-    - logs
+    # - logs
 
-    # # Can be enable/disable on demand but affect all devices
+    # # # Can be enable/disable on demand but affect all devices
 
-    - { role: ideasbox, version: "0.4.0-1" }
+    # - { role: ideasbox, version: "0.4.0-1" }
 
-    # Install and configure a kiwix project 
-    - role: kiwix
-      kiwixProject: wikipedia
-      portProject: 8001
-    #   when: ansible_hostname == 'KoomBook483'
+    # # Install and configure a kiwix project 
+    # - role: kiwix
+    #   kiwixProject: wikipedia
+    #   portProject: 8001
+    # #   when: ansible_hostname == 'KoomBook483'
 
-    # Update Mook plateform
-    - mongodb
-    - { role: mook, mook_name: bsfcampus }
-    - { role: mook, mook_name: fun }
+    # # Update Mook plateform
+    # - mongodb
+    # - { role: mook, mook_name: bsfcampus }
+    # - { role: mook, mook_name: fun }
 
     # Play a role for a specific device
     #- { role: iptables, when: ansible_hostname == 'KoomBook603' }
