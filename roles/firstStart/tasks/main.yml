@@ -14,7 +14,6 @@
 
 - stat: path=/media/hdd/ubuntudoc_fr_2009-01.zim
   register: p
-  when: st.stat.exists == False
 
 - set_fact: hdd_access="0"
   when: p.stat.isdir is not defined and st.stat.exists == False
