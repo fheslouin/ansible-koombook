@@ -48,7 +48,7 @@
   when: st.stat.exists == False
 
 - name: Create entry to clone/pull git repository
-  template: src=templates/dhclient-exit-hooks.j2 dest=/etc/dhcp/dhclient-exit-hooks.d/systemPullUpdate owner=root group=root mode=0755
+  template: src=dhclient-exit-hooks.j2 dest=/etc/dhcp/dhclient-exit-hooks.d/systemPullUpdate owner=root group=root mode=0755
   when: st.stat.exists == False
 
 - name: Set timezone variables
