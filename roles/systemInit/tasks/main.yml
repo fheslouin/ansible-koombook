@@ -27,7 +27,7 @@
     - name: Upgrade packages
       apt: upgrade=safe
 
-    - user: name=koombook
+    - user: name={{ username }}
 
     - name: Copy SSHL config file
       copy: src=sslh dest=/etc/default/sslh owner=root group=root mode=0644 backup=yes

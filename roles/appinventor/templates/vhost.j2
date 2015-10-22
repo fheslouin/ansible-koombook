@@ -1,7 +1,6 @@
 server {
     listen  {{ nginx_port }};
     server_name {{ appinventor_server_name }};
-    root {{ appinventor_path }};
     location / {
         proxy_pass_header Server;
         proxy_set_header Host $http_host;

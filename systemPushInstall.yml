@@ -1,6 +1,9 @@
 ---
+# SystemPushInstall has to be use in PUSH mode. 
+# ex : ansible-playbook -i hosts -l SystemPushInstall -u root systemPushInstall.yml
+# Here you can play different role against a system define in "hosts" -> [SystemPushInstall]
 
-- hosts: koombook
+- hosts: SystemPushInstall
   roles:
     # - nginx
     # - dnsmasq

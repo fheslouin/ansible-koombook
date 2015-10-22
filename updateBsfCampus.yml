@@ -1,40 +1,28 @@
 ---
-# Ansible playbook for BSF Campus KoomBook
+# Ansible playbook for BSF Campus
 
 #It will be always localhost
-- hosts: bsfcampus
+- hosts: localhost
   roles:
     # Has to be always enable 
     - role: firstStart
-      timezone: Europe/Paris
-      IdeasServer_id: koombookBsfCampus
+      timezone: Africa/Dakar
+      IdeasServer_id: BsfCampus
 
     - logs
 
     # # Can be enable/disable on demand but affect all devices
-    # - nginx
-    # - dnsmasq
-    # - hostapd
-    # - iptables
-    # - wikipedia
-    # - cpassorcier
-    # # - framadvd
-    # - tedvideos
-    # # - ubuntudoc
-    # - vikidia
-    # - wikisource
-    # # - kalite
-    # # - monitoring
+
     #- { role: ideasbox, version: 0.4.0-1 }
-    # # - gutemberg
-    # - appinventor
+
+    # Install and configure a kiwix project 
     # - role: kiwix
     #   kiwixProject: wikipedia
     #   portProject: 8001
     #   when: ansible_hostname == 'KoomBook483'
 
-    # Install Mook 
-    - mongodb
+    # Update Mook plateform
+    #- mongodb
     #- { role: mook, mook_name: bsfcampus }
     #- { role: mook, mook_name: fun }
 

@@ -98,7 +98,7 @@
     lineinfile: dest=/etc/rc.local
                 regexp='^By'
                 insertbefore='^# By'
-                line="su koombook -c \'{{ mook_path }}{{ mook_name }}/api/env/bin/python2.7 {{ mook_path }}{{ mook_name }}/api/manage.py sync -D\' > /dev/null 2>&1"
+                line="su {{ username }} -c \'{{ mook_path }}{{ mook_name }}/api/env/bin/python2.7 {{ mook_path }}{{ mook_name }}/api/manage.py sync -D\' > /dev/null 2>&1"
 
   # - name: Enable service sync daemon
   #   service: name={{ mook_name }}-sync enabled=yes

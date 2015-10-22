@@ -1,5 +1,7 @@
 ---
-- hosts: koombook
+# SystemInit has to be use in PUSH mode. 
+# ex : ansible-playbook -i hosts -l SystemToInit -u root systemInit.yml
+# It will install all the basic package and configuration for the KoomBook/IdeasBox
+- hosts: SystemToInit
   roles:
    - systemInit
-  #- { role: mongodb, when: ansible_hostname == 'KoomBook918' }

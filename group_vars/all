@@ -2,7 +2,6 @@
 #Apps path
 wikipedia_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
 gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
-appinventor_path: /home/{{username}}/Ai2LiveComplete/
 framadvd_path: /media/hdd/framadvd/
 cpassorcier_zim_path: /media/hdd/cest-pas-sorcier/cest-pas-sorcier_fr_all_2015-07.zim
 ted_zim_path: /media/hdd/TEDvideos/
@@ -24,6 +23,7 @@ mook_path: /home/
 
 #System
 username: koombook
+#username: ideasbox
 nginx_port: 80
 nginx_remove_default_vhost: true
 # File that ansible will use for logs
@@ -35,18 +35,11 @@ central_server: ansible@37.187.151.52
 filer_bsf: http://filer.bsf-intranet.org
 
 #Domaine name 
-wikipedia_server_name: wikipedia.{{hostname}}
 kalite_server_name: kalite.{{hostname}}
-gutemberg_server_name: gutemberg.{{hostname}}
 mook_front_server_name: bsfcampus.{{ hostname }}
 mook_api_server_name: api.{{ mook_name }}.{{ hostname }}
 appinventor_server_name: appinventor.{{hostname}}
-framadvd_server_name: framadvd.{{hostname}}
-cpassorcier_server_name: cpassorcier.{{hostname}}
-vikidia_server_name: vikidia.{{hostname}}
-ted_server_name: ted.{{hostname}}
-wikisource_server_name: wikisource.{{hostname}}
-ubuntudoc_server_name: ubuntudoc.{{hostname}}
+framadvd_server_name: software.{{hostname}}
 
 #Hardware battery
 battery_capacity: 7800

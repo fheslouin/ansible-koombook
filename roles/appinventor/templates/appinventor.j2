@@ -17,9 +17,9 @@ set -e
 . /lib/lsb/init-functions
 case "$1" in
     start)
-        cd /home/koombook/Ai2LiveComplete
-        su koombook -c "./startAIServer.sh & "
-        su koombook -c "./startBuildServer.sh &"
+        cd /home/{{ username }}/Ai2LiveComplete
+        su {{ username }} -c "./startAIServer.sh & "
+        su {{ username }} -c "./startBuildServer.sh &"
         ;;
     stop)
         echo "Kill manually the server"
