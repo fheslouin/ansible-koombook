@@ -34,7 +34,7 @@
     #   when: ansible_hostname == 'KoomBook483'
 
     # Install Mook 
-    #- mongodb
+    - mongodb
     #- { role: mook, mook_name: bsfcampus }
     #- { role: mook, mook_name: fun }
 

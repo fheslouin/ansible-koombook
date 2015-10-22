@@ -3,9 +3,9 @@
 - hosts: localhost
   roles:
     # Has to be always enable 
-     - role: firstStart
-       timezone: Europe/Paris
-       IdeasServer_id: koombookCdf
+    # - role: firstStart
+    #   timezone: Europe/Paris
+    #   IdeasServer_id: koombookCdf
 
     # - logs
 
