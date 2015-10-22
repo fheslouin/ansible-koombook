@@ -26,8 +26,8 @@
     # #   when: ansible_hostname == 'KoomBook483'
 
     # # Update Mook plateform
-     - mongodb
-     - { role: mook, mook_name: bsfcampus }
+    - mongodb
+    - { role: mook, mook_name: bsfcampus }
     # - { role: mook, mook_name: fun }
 
     # Play a role for a specific device
