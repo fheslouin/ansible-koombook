@@ -35,4 +35,4 @@
 
     # Play a role for a specific device
     #- { role: iptables, when: ansible_hostname == 'KoomBook603' }
-    #- { role: ideasbox, when: ansible_hostname == 'KoomBook484' }
+    - { role: ideasbox, when: ansible_hostname == 'KoomBook484' }

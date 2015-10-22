@@ -52,7 +52,7 @@ ubuntudoc_server_name: ubuntudoc.{{hostname}}
 
 #Hardware battery
 battery_capacity: 7800
-charging_current: 1000
+charging_current: 750
 power_on_button_delay: 500
 power_off_button_delay: 8000
 enable_power_button_power_off: 1
