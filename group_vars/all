@@ -23,7 +23,7 @@ mook_name: bsfcampus
 mook_path: /home/
 
 #System
-IdeasBox_id: koombook_bsfcampus
+IdeasBox_id: koombookBsfCampus
 username: koombook
 nginx_port: 80
 nginx_remove_default_vhost: true
