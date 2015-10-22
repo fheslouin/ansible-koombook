@@ -6,7 +6,7 @@
   roles:
     # Has to be always enable 
     - role: firstStart
-      timezone: Africa/Dakar
+      timezone: "Africa/Dakar"
       IdeasServer_id: BsfCampus
 
     - nginx
@@ -19,7 +19,7 @@
 
     # # Can be enable/disable on demand but affect all devices
 
-    - { role: ideasbox, version: 0.4.0-1 }
+    - { role: ideasbox, version: "0.4.0-1" }
 
     # Install and configure a kiwix project 
     - role: kiwix
