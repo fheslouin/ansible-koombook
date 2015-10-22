@@ -14,4 +14,8 @@
      # - gutemberg
      # - appinventor
      # - mook
-      - mongodb
+     #- mongodb
+     - role: kiwix
+       kiwixProject: wikipedia
+       portProject: 8001
+       when: ansible_hostname == 'KoomBook483'

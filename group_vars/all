@@ -1,6 +1,6 @@
 ---
-#Apps
-kiwix_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
+#Apps path
+wikipedia_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
 gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
 appinventor_path: /home/{{username}}/Ai2LiveComplete/
 framadvd_path: /media/hdd/framadvd/

@@ -5,7 +5,8 @@
     # Has to be always enable 
     - firstStart
     - logs
-    # # Can be anable/disable on demand but affect all devices
+
+    # # Can be enable/disable on demand but affect all devices
     # - nginx
     # - dnsmasq
     # - hostapd
@@ -22,8 +23,16 @@
     # - ideasbox
     # # - gutemberg
     # - appinventor
-    # - mook
-    # - mongodb
+    # - role: kiwix
+    #   kiwixProject: wikipedia
+    #   portProject: 8001
+    #   when: ansible_hostname == 'KoomBook483'
+
+    # Install Mook 
+    #- mongodb
+    #- { role: mook, mook_name: bsfcampus }
+    #- { role: mook, mook_name: fun }
+
     # Play a role for a specific device
-    - { role: iptables, when: ansible_hostname == 'KoomBook603' }
-    - { role: ideasbox, when: ansible_hostname == 'KoomBook484' }
+    #- { role: iptables, when: ansible_hostname == 'KoomBook603' }
+    #- { role: ideasbox, when: ansible_hostname == 'KoomBook484' }
