@@ -10,7 +10,7 @@
     # Has to be always enable 
     - role: firstStart
       timezone: "Africa/Dakar"
-      IdeasServer_id: {{ projectName }}
+      IdeasServer_id: "{{ projectName }}"
 
     - hostapd
     - iptables
@@ -22,7 +22,7 @@
 
     - role: ideasbox
       version: "0.4.0-1"
-      IdeasServer_id: {{ projectName }}
+      IdeasServer_id: "{{ projectName }}"
 
     # # Install and configure a kiwix project 
     # - role: kiwix
