@@ -9,8 +9,6 @@
       timezone: "Africa/Dakar"
       IdeasServer_id: BsfCampus
 
-    - nginx
-    - dnsmasq
     - hostapd
     - iptables
     - monitoring
@@ -22,9 +20,9 @@
     - { role: ideasbox, version: "0.4.0-1" }
 
     # # Install and configure a kiwix project 
-    # - role: kiwix
-    #   kiwixProject: wikipedia
-    #   portProject: 8001
+    - role: kiwix
+      kiwixProject: wikipedia
+      portProject: 8001
     # #   when: ansible_hostname == 'KoomBook483'
 
     # # Update Mook plateform
