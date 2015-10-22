@@ -1,13 +1,15 @@
 ---
+# Ansible playbook for BSF Campus KoomBook
+
 #It will be always localhost
-- hosts: localhost
+- hosts: bsfcampus
   roles:
     # Has to be always enable 
-    # - role: firstStart
-    #   timezone: Europe/Paris
-    #   IdeasServer_id: koombookCdf
+    - role: firstStart
+      timezone: Europe/Paris
+      IdeasServer_id: koombookBsfCampus
 
-    # - logs
+    - logs
 
     # # Can be enable/disable on demand but affect all devices
     # - nginx
@@ -23,7 +25,7 @@
     # - wikisource
     # # - kalite
     # # - monitoring
-    # - ideasbox
+    #- { role: ideasbox, version: 0.4.0-1 }
     # # - gutemberg
     # - appinventor
     # - role: kiwix

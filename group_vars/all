@@ -23,11 +23,9 @@ mook_name: bsfcampus
 mook_path: /home/
 
 #System
-IdeasBox_id: koombookBsfCampus
 username: koombook
 nginx_port: 80
 nginx_remove_default_vhost: true
-timezone: Europe/Paris
 # File that ansible will use for logs
 logfile: /var/log/ansible-pull.log
 # Directory to where repository will be cloned

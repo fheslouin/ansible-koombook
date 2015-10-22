@@ -34,6 +34,28 @@
 - lineinfile: dest=/etc/network/interfaces regexp='wpa' state=absent
   when: st.stat.exists == False
 
+- name: Create local directory to work from
+  file: path={{workdir}} state=directory owner=root group=root mode=0751
+  when: st.stat.exists == False
+
+- name: Create ansible hosts directory to work from
+  file: path=/etc/ansible/ state=directory owner=root group=root mode=0751
+  when: st.stat.exists == False
+
+- name: Copy ansible inventory file to client
+  copy: src=hosts dest=/etc/ansible/hosts
+          owner=root group=root mode=0644
+  when: st.stat.exists == False
+
+- name: Create entry to clone/pull git repository
+  template: src=templates/dhclient-exit-hooks.j2 dest=/etc/dhcp/dhclient-exit-hooks.d/systemPullUpdate owner=root group=root mode=0755
+  when: st.stat.exists == False
+
+- name: Set timezone variables
+  copy: content={{ timezone }} dest=/etc/timezone owner=root group=root mode=0644 backup=yes
+  notify: update timezone
+  when: st.stat.exists == False
+  
 - command: /sbin/shutdown -h now
 #- command: /sbin/reboot
   when: st.stat.exists == False
