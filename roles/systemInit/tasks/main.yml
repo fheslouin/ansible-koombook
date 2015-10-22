@@ -78,6 +78,19 @@
       when: ansible_architecture == "armhf" or ansible_architecture == "armv7l"   
       ignore_errors: yes
 
+    - name: Create local directory to work from
+      file: path={{workdir}} state=directory owner=root group=root mode=0751
+
+    - name: Create ansible hosts directory to work from
+      file: path=/etc/ansible/ state=directory owner=root group=root mode=0751
+
+    - name: Copy ansible inventory file to client
+      copy: src=hosts dest=/etc/ansible/hosts
+              owner=root group=root mode=0644
+
+    - name: Create entry to clone/pull git repository
+      template: src=dhclient-exit-hooks.j2 dest=/etc/dhcp/dhclient-exit-hooks.d/systemPullUpdate owner=root group=root mode=0755
+
     - name: List services to restart (1/2)
       shell: checkrestart | grep ^service | awk '{print $2}'
       register: services
