@@ -9,17 +9,17 @@
       timezone: "Africa/Dakar"
       IdeasServer_id: BsfCampus
 
-    # - nginx
-    # - dnsmasq
-    # - hostapd
-    # - iptables
-    # - monitoring
+    - nginx
+    - dnsmasq
+    - hostapd
+    - iptables
+    - monitoring
 
-    # - logs
+    - logs
 
-    # # # Can be enable/disable on demand but affect all devices
+    # # Can be enable/disable on demand but affect all devices
 
-    # - { role: ideasbox, version: "0.4.0-1" }
+    - { role: ideasbox, version: "0.4.0-1" }
 
     # # Install and configure a kiwix project 
     # - role: kiwix
