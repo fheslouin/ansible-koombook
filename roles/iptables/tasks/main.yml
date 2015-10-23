@@ -3,7 +3,7 @@
       apt: name=iptables state=latest
 
     - name: Authorize NAT
-      command: sed -ri s/^#net.ipv4.ip_forward=1$/net.ipv4.ip_forward=1/ /etc/sysctl.conf
+      replace: dest=/etc/sysctl.conf regexp='^#net.ipv4.ip_forward=1$' replace='net.ipv4.ip_forward=1' backup=yes
 
     - name: Copy iptables rules file
       template: src=iptables.sh.j2 dest=/tmp/iptables.sh owner=root group=root mode=755
