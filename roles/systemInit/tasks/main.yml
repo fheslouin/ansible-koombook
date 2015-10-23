@@ -20,6 +20,8 @@
        - bash-completion
        - aptitude
        - sslh
+       - ntpdate
+       - fake-hwclock
 
     - name: Installe ansible
       pip: name=ansible
@@ -47,7 +49,8 @@
                           spindown_time = 280
                   }'
 
-    - locale_gen: name=fr_FR.UTF-8 state=present
+    - name: fake-hwclock conf
+      copy: content="FORCE=force" dest=/etc/default/fake-hwclock
 
     - name: Copy fex.file
       template: src=lime2.fex.j2 dest=/boot/bin/lime2.fex

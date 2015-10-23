@@ -37,6 +37,10 @@
 - lineinfile: dest=/etc/network/interfaces regexp='wpa' state=absent
   when: st.stat.exists == False
 
+- name: set /etc/localtime
+  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link
+  when: st.stat.exists == False
+
 - name: Set timezone variables
   copy: content={{ timezone }} dest=/etc/timezone owner=root group=root mode=0644 backup=yes
   notify: update timezone
