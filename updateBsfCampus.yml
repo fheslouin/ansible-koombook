@@ -13,38 +13,38 @@
       IdeasServer_id: "{{ projectName }}"
 
     - logs
-    - iptables
+    #- iptables
 
     # # Can be enable/disable on demand but affect all devices
 
-    - role: ideasbox
-      version: "0.4.0-1"
-      IdeasServer_id: "{{ projectName }}"
+    # - role: ideasbox
+    #   version: "0.4.0-1"
+    #   IdeasServer_id: "{{ projectName }}"
 
     # # Install and configure a kiwix project 
-    - role: kiwix
-      kiwixProject: wikipedia
-      portProject: 8002
-    - role: kiwix
-      kiwixProject: wikisource
-      portProject: 8003
-    - role: kiwix
-      kiwixProject: vikidia
-      portProject: 8004
-    - role: kiwix
-      kiwixProject: cpassorcier
-      portProject: 8005
-    - role: kiwix
-      kiwixProject: ubuntudoc
-      portProject: 8006
-    - role: kiwix
-      kiwixProject: gutenberg
-      portProject: 8007
-    - role: kiwix
-      kiwixProject: universcience
-      portProject: 8009
+    # - role: kiwix
+    #   kiwixProject: wikipedia
+    #   portProject: 8002
+    # - role: kiwix
+    #   kiwixProject: wikisource
+    #   portProject: 8003
+    # - role: kiwix
+    #   kiwixProject: vikidia
+    #   portProject: 8004
+    # - role: kiwix
+    #   kiwixProject: cpassorcier
+    #   portProject: 8005
+    # - role: kiwix
+    #   kiwixProject: ubuntudoc
+    #   portProject: 8006
+    # - role: kiwix
+    #   kiwixProject: gutenberg
+    #   portProject: 8007
+    # - role: kiwix
+    #   kiwixProject: universcience
+    #   portProject: 8009
 
-    - appinventor
+    # - appinventor
     # #   when: ansible_hostname == 'KoomBook483'
 
     # # Update Mook plateform
