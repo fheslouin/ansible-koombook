@@ -1,13 +1,7 @@
 ---
 #Apps path
-wikipedia_zim_path: /media/hdd/wikipedia/wikipedia_fr_all_2015-05.zim
-gutemberg_zim_path: /media/hdd/gutenberg/gutenberg_fr_all_10_2014.zim
 framadvd_path: /media/hdd/framadvd/
-cpassorcier_zim_path: /media/hdd/cest-pas-sorcier/cest-pas-sorcier_fr_all_2015-07.zim
-ted_zim_path: /media/hdd/TEDvideos/
-vikidia_zim_path: /media/hdd/vikipedia/vikidia_fr_all_2015-10.zim
-wikisource_zim_path: /media/hdd/wikisource/
-ubuntudoc_zim_path: /media/hdd/ubuntudoc_fr_2009-01.zim
+mook_path: /home/
 
 #Network
 hostname: koombook.lan
@@ -17,19 +11,14 @@ hotspot_interface: wlan0
 lan_interface: eth0
 client_interface: wlan1
 
-#Learning managment system "mook" variables
-mook_name: bsfcampus
-mook_path: /home/
+kiwixProject: wikipedia
+portProject: 8001
 
 #System
 username: koombook
 #username: ideasbox
 nginx_port: 80
 nginx_remove_default_vhost: true
-# File that ansible will use for logs
-logfile: /var/log/ansible-pull.log
-# Directory to where repository will be cloned
-workdir: /var/lib/ansible/local
 repo_url: https://github.com/fheslouin/ansible-koombook.git
 central_server: ansible@37.187.151.52
 filer_bsf: http://filer.bsf-intranet.org
@@ -47,3 +36,7 @@ charging_current: 750
 power_on_button_delay: 500
 power_off_button_delay: 8000
 enable_power_button_power_off: 1
+
+# Ansible distant configuration 
+logfile: /var/log/ansible-pull.log
+workdir: /var/lib/ansible/local
