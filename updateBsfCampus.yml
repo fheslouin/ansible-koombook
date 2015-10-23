@@ -21,7 +21,9 @@
     #   IdeasServer_id: "{{ projectName }}"
 
     # # Install and configure a kiwix project 
-    #- role: kiwix
+    - role: kiwix
+      kiwixProject: wikipedia
+      portProject: 8002
     # #   when: ansible_hostname == 'KoomBook483'
 
     # # Update Mook plateform
