@@ -1,8 +1,0 @@
----
-# SystemInit has to be use in PUSH mode. 
-# ex : ansible-playbook -i hosts -l SystemToInit -u root systemInit.yml
-# It will install all the basic package and configuration for the KoomBook/IdeasBox
-# IdeasServer_id has to be set in order to match with the right playbook ex: updateBsfCampus.yml
-- hosts: SystemToInit
-  roles:
-   - { role: systemInit, IdeasServer_id: BsfCampus }
