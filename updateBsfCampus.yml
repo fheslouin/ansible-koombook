@@ -13,6 +13,7 @@
       IdeasServer_id: "{{ projectName }}"
 
     - logs
+    
     - iptables
 
     # # Can be enable/disable on demand but affect all devices
