@@ -1,4 +1,4 @@
- #! /bin/sh
+#! /bin/sh
 ### BEGIN INIT INFO
 # Provides:          {{ kiwixProject }}
 # Required-Start:    $remote_fs $syslog
@@ -37,7 +37,7 @@ DATAPATH=/media/hdd/kiwix_library/{{ kiwixProject }}.xml
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
-DAEMON_ARGS="--daemon --port=$PORT $DATAPATH"
+DAEMON_ARGS="--library --daemon --port=$PORT $DATAPATH"
 
 #
 # Function that starts the daemon/service
