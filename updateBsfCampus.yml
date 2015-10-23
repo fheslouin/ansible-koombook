@@ -22,8 +22,8 @@
 
     # # Install and configure a kiwix project 
     - role: kiwix
-      kiwixProject: wikipedia
-      portProject: 8002
+      kiwixProject: ted
+      portProject: 8003
     # #   when: ansible_hostname == 'KoomBook483'
 
     # # Update Mook plateform
