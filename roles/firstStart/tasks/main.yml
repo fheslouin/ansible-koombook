@@ -46,6 +46,6 @@
   notify: update timezone
   when: st.stat.exists == False
   
-- command: /sbin/shutdown -h now
-#- command: /sbin/reboot
+#- command: /sbin/shutdown -h now
+- command: /sbin/reboot
   when: st.stat.exists == False
