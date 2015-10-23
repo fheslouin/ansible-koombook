@@ -11,9 +11,6 @@ hotspot_interface: wlan0
 lan_interface: eth0
 client_interface: wlan1
 
-kiwixProject: wikipedia
-portProject: 8001
-
 #System
 username: koombook
 #username: ideasbox

@@ -17,19 +17,3 @@
     - role: kiwix
       kiwixProject: wikipedia
       portProject: 8002
-    - role: kiwix
-      kiwixProject: wikisource
-      portProject: 8003
-    - role: kiwix
-      kiwixProject: vikipedia
-      portProject: 8004
-    - role: kiwix
-      kiwixProject: TEDvideos
-      portProject: 8005
-    - role: kiwix
-      kiwixProject: gutemberg
-      portProject: 8006
-    - role: kiwix
-      kiwixProject: cest-pas-sorcier
-      portProject: 8007
-      #when: ansible_hostname == 'KoomBook483'
