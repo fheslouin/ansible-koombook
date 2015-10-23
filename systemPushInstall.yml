@@ -15,9 +15,9 @@
      # - role: systemInit
      #   IdeasServer_id: "{{ projectName }}"
 
-     # - nginx
-     # - dnsmasq
-     # - hostapd
+     - nginx
+     - dnsmasq
+     - hostapd
      - iptables
      - monitoring
 
