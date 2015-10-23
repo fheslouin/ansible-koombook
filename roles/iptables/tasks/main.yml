@@ -21,8 +21,8 @@
       copy: src=forwarding dest=/etc/network/if-up.d/forwarding owner=root group=root mode=755 backup=yes
       when: iptables.changed
 
-    # - name: Reload sysctl conf
-    #   command: sysctl -p
+    - name: Reload sysctl conf
+      command: sysctl -p
 
     - tasks:
       include: ../../../post_tasks.yml task=iptables version=1

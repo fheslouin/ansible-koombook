@@ -8,12 +8,12 @@
     # - nginx
     # - dnsmasq
     # - hostapd
-    # - iptables
-    # - monitoring
+    - iptables
+    - monitoring
     # - ideasbox
     # - appinventor
     # - mook
     #- mongodb
-    - role: kiwix
-      kiwixProject: wikipedia
-      portProject: 8002
+    # - role: kiwix
+    #   kiwixProject: wikipedia
+    #   portProject: 8002
