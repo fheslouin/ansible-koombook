@@ -43,3 +43,4 @@
 
   - tasks:
     include: ../../../post_tasks.yml task=mongodb version=1
+    when: mongodb.changed
