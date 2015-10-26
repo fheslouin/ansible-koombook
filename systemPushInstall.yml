@@ -6,24 +6,24 @@
 
 - hosts: SystemPushInstall
   vars:
-    # Give a name to the project. It has to match with one of the config file (w/o .py) from the IdeasServer 
-    # See : https://github.com/ideas-box/ideasbox.lan/tree/master/ideasbox/conf
+    # Give a name to the project. It has to match with one of the config file (w/o .py) from the ideastube 
+    # See : https://github.com/ideastube/ideastube/blob/master/ideastube/conf/
     projectName: BsfCampus
 
   roles:
      # It will install all the basic package and configuration for the KoomBook/IdeasBox
      # - role: systemInit
-     #   IdeasServer_id: "{{ projectName }}"
+     #   ideastube_id: "{{ projectName }}"
 
      - nginx
      - dnsmasq
      - hostapd
-     - iptables
+     #- iptables
      - monitoring
 
-     - role: ideasbox
+     - role: ideastube
        version: "0.4.0-1"
-       IdeasServer_id: "{{ projectName }}"
+       ideastube_id: "{{ projectName }}"
 
     # Install all the file to activate the Mook plateform
     # - mongodb
