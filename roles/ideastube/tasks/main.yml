@@ -24,6 +24,12 @@
               state=present
   when: ansible_architecture == 'armhf' or ansible_architecture == 'armv7l'
 
+- lineinfile: dest=/etc/nginx/sites-available/ideastube regexp='443' state=absent
+  notify: restart nginx
+
+- file: src=/etc/uwsgi/apps-available/ideastube.ini dest=/etc/uwsgi/vassals/ideastube.ini state=link
+  notify: restart uwsgi
+
 # For AMD64
 # - name: Check if package exist
 #   stat: path=/tmp/ideastube_{{ version }}_amd64.deb
