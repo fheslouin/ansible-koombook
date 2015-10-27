@@ -1,3 +1,0 @@
----
-    - name: update sslh
-      command: service sslh restart
